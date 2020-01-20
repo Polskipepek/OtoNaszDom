@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Stwórz nowe konto!</title>
+        <script src="https://apis.google.com/js/platform.js" async="async" defer="defer"></script>
+        <meta name="google-signin-client_id" content="162165589101-f8u90q0qaj4nv9klve1r329m4u4rn89b.apps.googleusercontent.com"/>
+
+    </h:head>
+    <h:body>
+        <center>
+            <h:form class="centered">
+                <h3>JSF Login</h3>
+                <h:outputText value="Pseudonim:" />
+                <h:inputText class="usernameLogin"  value="#{loginController.user}"></h:inputText>
+                <h:message for="username"></h:message>
+                <br></br><br></br>
+                <h:outputText value="Hasło:" />
+                <h:inputSecret  class="passwordLogin" value="#{loginController.pwd}"></h:inputSecret>
+                <h:message for="password"></h:message>
+                <br></br><br></br>
+                    
+                <h:commandButton action="#{loginController.ValidateUsernamePassword}"
+                                 value="Login"></h:commandButton>
+
+                <div class="g-signin2" data-onsuccess="onSignIn" id="myP" data-theme="dark">Google</div>
+                <script src="GoogleSignHelper.js"/>
+                <div id="status">
+                </div>
+                <a id="loginToRegisterFont" onclick ="window.location.href = 'http://localhost:8080/userRegister.xhtml'" >Kliknij tutaj, aby się zarejestrować</a>
+
+            </h:form>
+        </center>
+    </h:body>
+</html>
+

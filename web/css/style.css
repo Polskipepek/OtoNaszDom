@@ -1,0 +1,72 @@
+
+body {
+    padding: 0;
+    color: #afa698;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 13px;
+    line-height: 1.7em; 
+    background-color: #291a07;
+    background-image: url(images/tooplate_body.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.centered{
+    margin: 0 auto;
+    width: auto;
+    box-sizing: border-box;
+    border:  5px solid beige;
+    padding: 20px;
+}
+
+a:hover { 
+    text-decoration: underline; 
+}
+
+a, a:link, a:visited { 
+    color: #c6c888; 
+    font-weight: 700; 
+    text-decoration: none; 
+    font-size: 11px; 
+}
+
+.img { border: none; }
+
+.loginPanel{
+    margin-left: 45%;
+}
+.g-signin2{
+    margin-top: 5%;    
+
+}
+
+#RegisterInputFieldsTable {
+    height: 43px;
+
+}
+.usernameLogin{
+    margin-left: 5px;
+}
+
+.passwordLogin{
+    margin-left: 38px
+}
+
+#loginWhiteFont{
+    font-size: 15px;
+    color: white;
+}
+#loginButtonFont{
+    font-size: 15px;
+    color:green;
+
+}
+#loginToRegisterFont{
+    margin-top: 10px;
+    font-size: 15px;
+}
+.backBtn{
+    height: auto;
+    width: auto;
+    padding: 5px;
+}

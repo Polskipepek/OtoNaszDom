@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   >
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="css/style.css"/>
+    </h:head>
+    <h:body>
+        <!--<form action="userregact.jsp" method="post" ><center> -->
+
+        <form name="myForm" >
+            <center>
+                <table width="567" required="required">
+                    <tr>
+                        <td width="238">Nazwa Użytkownika</td>
+                        <td width="317"><input id="username" name="username" placeholder="Nazwa użytkownika" /></td>
+                    </tr>
+                    <tr>
+                        <td>Hasło</td>
+                        <td><input type="password" id="password" name="password" placeholder="Hasło"/></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email" id="email" name="email" placeholder="Email" /></td>
+                    </tr>
+                    <tr>
+                        <td>Telefon kontaktowy</td>
+                        <td><input id="mobile" name="mobile" placeholder="Komóra"/></td>
+                    </tr>
+                    <tr>
+                        <td>Data urodzenia</td>
+                        <td><input type="date" id="date" name="date" placeholder="DATE"/></td>
+                    </tr>
+                    <tr>
+                        <td>Płeć</td>
+                        <td><select id="sex" name="gender" style="width:175px;" value="#{registerController.plec}">
+                                <option>--Wybierz--</option>
+                                <option >MĘŻCZYZNA</option>
+                                <option>KOBIETA</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td height="65">Adres</td>
+                        <td><textarea id="address" name="address" rows="3" cols="30" placeholder="Wpisz swój adres"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td height="65">Awatar</td>
+                        <td>
+                            <input type="file" id="img" name="image"> 
+                            </input></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><p>&nbsp;</p></td>
+                        <td align="left" valign="middle"> <p>&nbsp;</p>
+                            <p><input name="submit" type="submit" value="Stwórz konto" onclick='#{registerController.ValidateRegister()}' /> </p>
+                            <div align="right"></div>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </center>
+
+        </form>
+        <div>
+            <center>
+                <button class="backBtn" name="Powrót do logowania" onclick="window.location.href = 'http://localhost:8080/userLogin.xhtml'" /> 
+            </center>
+        </div>
+    </h:body>
+</html>
+
