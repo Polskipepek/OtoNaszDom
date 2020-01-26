@@ -3,20 +3,24 @@ body {
     padding: 0;
     color: #afa698;
     font-family: Tahoma, Geneva, sans-serif;
-    font-size: 13px;
+    font-size: 23px;
     line-height: 1.7em; 
     background-color: #291a07;
-    background-image: url(images/tooplate_body.jpg);
+    background-image: url(http://localhost:8080/resources/images/tooplate_body.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
 
 .centered{
-    margin: 0 auto;
+    margin-top: 20vh !important;
+    margin-left: 60vh;    
+    margin-right: 60vh;
+
     width: auto;
     box-sizing: border-box;
     border:  5px solid beige;
     padding: 20px;
+    color: white;
 }
 
 a:hover { 
@@ -32,41 +36,40 @@ a, a:link, a:visited {
 
 .img { border: none; }
 
-.loginPanel{
-    margin-left: 45%;
-}
-.g-signin2{
-    margin-top: 5%;    
 
-}
 
 #RegisterInputFieldsTable {
     height: 43px;
 
 }
-.usernameLogin{
-    margin-left: 5px;
-}
 
-.passwordLogin{
-    margin-left: 38px
-}
 
-#loginWhiteFont{
-    font-size: 15px;
-    color: white;
-}
-#loginButtonFont{
-    font-size: 15px;
-    color:green;
-
-}
 #loginToRegisterFont{
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 25px;
+    color: red;
+
+    position: absolute;
+    bottom: 10vh;
+    margin-left: 93vh;
 }
-.backBtn{
-    height: auto;
-    width: auto;
-    padding: 5px;
+
+.credits{
+    position: absolute;
+    right: 1vh;
+    bottom: 0;
+
+    text-align: center;
+
+
+}
+
+#messages{
+    top: 5vh;
+    margin: auto;
+}
+
+.Form{
+    background: gray;
+
 }

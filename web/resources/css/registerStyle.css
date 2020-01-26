@@ -1,0 +1,28 @@
+body {
+    padding: 0;
+    color: #afa698;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 13px;
+    line-height: 1.7em; 
+    background-color: lightslategray;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+}
+
+.backBtn{
+    height: auto;
+    width: auto;
+    padding: 5px;
+}
+
+.credits{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color:  #493a27;
+    text-align: center;
+    height: 5px;
+}

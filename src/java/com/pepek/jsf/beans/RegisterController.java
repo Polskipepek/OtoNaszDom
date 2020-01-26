@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class RegisterController implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386363L;
+    private static final long serialVersionUID = 1094838637898L;
 
     private String user;
     private String haslo;
@@ -43,7 +43,7 @@ public class RegisterController implements Serializable {
     private Blob awatar;
     private Date data;
 
-    //validate login
+    //validate
     public String ValidateRegister() {
         boolean valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, data, plec, adres, awatar);
         if (valid) {

@@ -31,9 +31,8 @@ public class LoginController implements Serializable {
 
     private static final long serialVersionUID = 1094801825228386363L;
 
-    public String pwd;
-    public String msg;
-    public String user;
+    private String pwd;
+    private String user;
 
     public String getPwd() {
         return pwd;
@@ -43,13 +42,6 @@ public class LoginController implements Serializable {
         this.pwd = pwd;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     public String getUser() {
         return user;
@@ -66,7 +58,7 @@ public class LoginController implements Serializable {
     }
 
     //validate login
-    public String ValidateUsernamePassword() {
+    public String validateUsernamePassword() {
         boolean valid = LoginDAO.validate(user, pwd);
         if (valid) {
             HttpSession session = SessionUtils.getSession();
@@ -78,7 +70,7 @@ public class LoginController implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Nieprawidłowe dane logowania",
                             "proszę wpisać poprawne dane logowania"));
-            return "index?faces-redirect=true";
+            return "";
         }
     }
 

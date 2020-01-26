@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:composite = "http://java.sun.com/jsf/composite">
+
+    <composite:interface>
+        <composite:attribute name = "usernameLabel" />
+        <composite:attribute name = "usernameValue" />
+        <composite:attribute name = "passwordLabel" />
+        <composite:attribute name = "passwordValue" />
+        <composite:attribute name = "emailValue"    />
+        <composite:attribute name = "emailLabel"    />
+        <composite:attribute name = "mobileValue"   />
+        <composite:attribute name = "mobileLabel"   />
+        <composite:attribute name = "dateValue" />
+        <composite:attribute name = "dateLabel" />
+        <composite:attribute name = "sexValue"  />
+        <composite:attribute name = "sexLabel"  />
+        <composite:attribute name = "avatarValue"  />
+        <composite:attribute name = "avatarLabel"  />
+        <composite:attribute name = "registerButtonLabel"  />
+        <composite:attribute name = "registerButtonAction" 
+                             method-signature = "java.lang.String login()" />
+    </composite:interface>
+
+    <composite:implementation>
+        <h:form enctype="multipart/form-data">
+            <h:message for = "registerPanel" style = "color:red;" />
+
+            <h:panelGrid    columns = "2"   id = "registerPanel">
+
+                #{cc.attrs.usernameLabel} : 
+                <h:inputText    id = "username" value = "#{cc.attrs.usernameValue}" required="true" label="#{cc.attrs.usernameLabel}" />
+
+                #{cc.attrs.passwordLabel} : 
+                <h:inputSecret  id = "password" value = "#{cc.attrs.passwordValue}" required="true" />
+
+                #{cc.attrs.emailLabel} :
+                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true"/>
+
+                #{cc.attrs.mobileLabel} :
+                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true"/>
+
+                #{cc.attrs.dateLabel} :
+                <h:inputText    id="date"       value="#{cc.attrs.dateValue} yyyy-MM-dd" required="true">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/> 
+                </h:inputText>
+
+                #{cc.attrs.sexLabel} :
+                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true">
+                    <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />
+                    <f:selectItem itemValue="K" itemLabel="Kobieta"   />
+                </h:selectOneMenu>
+
+                #{cc.attrs.avatarLabel}
+                <h:inputFile    id="avatar"     value="#{cc.attrs.avatarValue}" required="true"/>
+            </h:panelGrid>
+
+            <h:commandButton action = "#{cc.attrs.registerButtonAction}" 
+                             value = "#{cc.attrs.registerButtonLabel}"
+                             style="padding: 10px"
+                             />
+        </h:form>
+    </composite:implementation>
+</html>
