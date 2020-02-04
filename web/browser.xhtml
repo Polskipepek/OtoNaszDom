@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="resources/css/browserStyle.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <title>#{bundle['browser.szukaj']}</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <ui:include src="menuContent.xhtml"/>
+            <center>
+                <h:inputText class="search" value="#{browserController.searchString}"></h:inputText>
+                <h:commandButton value="#{bundle['browser.szukaj']}" action="#{browserController.SearchByString(browserController.searchString)}" >
+                    <f:ajax execute="search" render="output"></f:ajax>
+                </h:commandButton>
+                <h2>
+                    <h:outputText id="output" value="#{bookBean.book.title}"></h:outputText>
+                </h2><br/>
+                
+                
+                
+            </center>
+        </h:form>
+
+    </h:body>
+</html>
+

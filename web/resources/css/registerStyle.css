@@ -2,27 +2,44 @@ body {
     padding: 0;
     color: #afa698;
     font-family: Tahoma, Geneva, sans-serif;
-    font-size: 13px;
+    font-size: 23px;
     line-height: 1.7em; 
-    background-color: lightslategray;
     background-position: top center;
+    background-color: #301b08;
+    background-image: url(http://localhost:8080/resources/images/tooplate_body.png);
     background-repeat: no-repeat;
 
 }
+
+.centered{
+    margin-top: 10vh !important;
+    margin-left: 10vh;    
+    margin-right: 10vh;
+    inline-size: max-content !important;
+    width: auto;
+    box-sizing: border-box;
+    border:  5px solid beige;
+    padding: 20px;
+    color: white;
+}
+#toggleLoginRegister{
+    font-size: 25px;
+    color: red;
+}
+.img { border: none; }
 
 .backBtn{
     height: auto;
     width: auto;
     padding: 5px;
 }
-
+.Form{
+    background: gray;
+}
 .credits{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
     background-color:  #493a27;
+    position: absolute;
+    right: 1vh;
+    top: 0;
     text-align: center;
-    height: 5px;
 }

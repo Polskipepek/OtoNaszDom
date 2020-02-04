@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.misc;
+package com.pepek.jpa.entities;
 
+import com.pepek.misc.Utilieties;
 import java.awt.Image;
 import java.sql.Blob;
 import java.util.Date;

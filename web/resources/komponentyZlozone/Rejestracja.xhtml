@@ -12,6 +12,8 @@
         <composite:attribute name = "usernameValue" />
         <composite:attribute name = "passwordLabel" />
         <composite:attribute name = "passwordValue" />
+
+
         <composite:attribute name = "emailValue"    />
         <composite:attribute name = "emailLabel"    />
         <composite:attribute name = "mobileValue"   />
@@ -22,48 +24,50 @@
         <composite:attribute name = "sexLabel"  />
         <composite:attribute name = "avatarValue"  />
         <composite:attribute name = "avatarLabel"  />
-        <composite:attribute name = "registerButtonLabel"  />
-        <composite:attribute name = "registerButtonAction" 
-                             method-signature = "java.lang.String login()" />
+
+
+        <composite:attribute name = "registerButtonLabel" />
+        <composite:attribute name = "registerButtonAction" method-signature="java.lang.String validateRegister()"
+                              />
     </composite:interface>
 
     <composite:implementation>
         <h:form enctype="multipart/form-data">
-            <h:message for = "registerPanel" style = "color:red;" />
 
-            <h:panelGrid    columns = "2"   id = "registerPanel">
-
+            <h:panelGrid columns = "2" id = "loginPanel">
                 #{cc.attrs.usernameLabel} : 
-                <h:inputText    id = "username" value = "#{cc.attrs.usernameValue}" required="true" label="#{cc.attrs.usernameLabel}" />
+                <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" />
 
                 #{cc.attrs.passwordLabel} : 
-                <h:inputSecret  id = "password" value = "#{cc.attrs.passwordValue}" required="true" />
+                <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" />
 
                 #{cc.attrs.emailLabel} :
-                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true"/>
+                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true" label="#{cc.attrs.emailLabel}"/>
 
                 #{cc.attrs.mobileLabel} :
-                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true"/>
+                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}"/>
 
                 #{cc.attrs.dateLabel} :
-                <h:inputText    id="date"       value="#{cc.attrs.dateValue} yyyy-MM-dd" required="true">
+                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="#{cc.attrs.dateLabel}">
                     <f:convertDateTime pattern="yyyy-MM-dd"/> 
                 </h:inputText>
 
                 #{cc.attrs.sexLabel} :
-                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true">
+                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}">
                     <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />
                     <f:selectItem itemValue="K" itemLabel="Kobieta"   />
                 </h:selectOneMenu>
 
                 #{cc.attrs.avatarLabel}
-                <h:inputFile    id="avatar"     value="#{cc.attrs.avatarValue}" required="true"/>
+                <h:inputFile    id="avatar"     value="#{cc.attrs.avatarValue}"   label="#{cc.attrs.avatarLabel}"/>
+
             </h:panelGrid>
 
-            <h:commandButton action = "#{cc.attrs.registerButtonAction}" 
-                             value = "#{cc.attrs.registerButtonLabel}"
-                             style="padding: 10px"
-                             />
+            <h:commandButton 
+                action = "#{cc.attrs.registerButtonAction}" 
+                value = "#{cc.attrs.registerButtonLabel}"
+                style="padding: 10px"
+                />
         </h:form>
     </composite:implementation>
 </html>

@@ -6,6 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone">
     <h:head>
+        <link rel="stylesheet" href="resources/css/style.css"/>
+
         <title>Logowanie</title>
         <meta name="google-signin-client-id" content="548841655727-97oeq242e73qqjk7i994bqtdj0021s1t.apps.googleusercontent.com"/>
 
@@ -17,19 +19,28 @@
                 <h3 style="font-size: 50px">Oto Nasz Dom</h3>
 
                 <komponentyZlozone:Logowanie 
-
                     usernameLabel="#{bundle['logowanie.pseudonim']}"
                     usernameValue="#{loginController.user}"
                     passwordLabel="#{bundle['logowanie.haslo']}"
                     passwordValue="#{loginController.pwd}"
+
                     loginButtonLabel="#{bundle['logowanie.zaloguj']}"
-                    loginButtonAction="#{loginController.validateUsernamePassword()}" />
+                    loginButtonAction="#{loginController.validateUsernamePassword()}" 
+
+                    />
+
+                <!--
+                <f:validateLength for="usernameLabel" minimum="5" maximum="25" />
+                -->
 
 
+                <br/><br/>
+                <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userRegister">
+                    <f:ajax  execute="toogle" render="toogleRender" event="click"/>
+                </h:button>
             </h:form>
         </center>
-
-
+        <div class="credits">&copy;Michał Stasinkiewicz</div>
     </h:body>
 </html>
 

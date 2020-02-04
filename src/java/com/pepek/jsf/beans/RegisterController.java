@@ -5,6 +5,7 @@
  */
 package com.pepek.jsf.beans;
 
+import com.pepek.misc.SessionUtils;
 import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.GenericUrl;
@@ -12,13 +13,16 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.pepek.misc.User;
 import com.pepek.misc.Utilieties.Sex;
 import database.RegisterDAO;
 import java.io.IOException;
 import java.io.Serializable;
-import java.sql.Blob;
-import java.sql.Date;
+import java.sql.SQLException;
+//import java.sql.Blob;
+import javax.servlet.http.Part;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -40,23 +44,28 @@ public class RegisterController implements Serializable {
     private String adres;
     private int telefon;
     private Sex plec;
-    private Blob awatar;
+    private Part awatar;
     private Date data;
 
     //validate
-    public String ValidateRegister() {
-        boolean valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, data, plec, adres, awatar);
+    public String validateRegister() throws SQLException {
+        boolean valid = false;
+        try {
+            valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, new java.sql.Date(data.getTime()), plec, adres, awatar);
+        } catch (IOException ex) {
+            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (valid) {
-//           HttpSession session = SessionUtils.getSession();
-//           session.setAttribute("username", user);
-            return "index";
+           HttpSession session = SessionUtils.getSession();
+           session.setAttribute("username", user);
+            return "userLogin";
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Nieprawidłowe dane logowania",
+                            "Nieprawidłowe dane rejestracji",
                             "proszę wpisać poprawne dane logowania"));
-            return "register";
+            return "";
         }
     }
 
@@ -116,20 +125,20 @@ public class RegisterController implements Serializable {
         this.plec = plec;
     }
 
-    public Blob getAwatar() {
-        return awatar;
-    }
-
-    public void setAwatar(Blob awatar) {
-        this.awatar = awatar;
-    }
-
     public Date getData() {
         return data;
     }
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Part getAwatar() {
+        return awatar;
+    }
+
+    public void setAwatar(Part awatar) {
+        this.awatar = awatar;
     }
 
 }

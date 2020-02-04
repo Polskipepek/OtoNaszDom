@@ -5,6 +5,7 @@
  */
 package com.pepek.jsf.beans;
 
+import com.pepek.misc.SessionUtils;
 import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.GenericUrl;
@@ -12,7 +13,7 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.pepek.misc.User;
+import com.pepek.jpa.entities.User;
 import database.LoginDAO;
 import java.io.IOException;
 import java.io.Serializable;
@@ -63,7 +64,7 @@ public class LoginController implements Serializable {
         if (valid) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
-            return "home";
+            return "/home";
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,

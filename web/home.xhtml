@@ -1,26 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <!--        <meta http-equiv="REFRESH" content="2; url=http://localhost:8080/index.xhtml" />        -->
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
-        <title>Pomyślnie zalogowano</title>
+        <title>#{bundle['home.zalogowano']}</title>
+
+
     </h:head>
     <h:body>
         <h:form>
-            <p>Witaj #{loginController.getUser()}!</p>
-            <h:commandLink action="#{loginController.logout()}" value="Logout"></h:commandLink>
-            <a href="#" onclick="signOut()">Sign out</a>
-            <script>
-                function signOut() {
-                    var auth2 = gapi.auth2.getAuthInstance();
-                    auth2.signOut().then(function () {
-                        console.log('User signed out.');
-                    });
-                }
-            </script>
+            <ui:include src="menuContent.xhtml"/>
+
+            <h1>#{bundle['home.witaj']} #{loginController.getUser()}!</h1>
+
+
         </h:form>
     </h:body>
 </html>
 
+<!--
+
+            <a href="#" onclick="signOut()">#{bundle['home.wyloguj']}</a>
+
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+</script>
+
+
+        <meta http-equiv="REFRESH" content="5; url=#{loginController.user != null ? 'http://localhost:8080/faces/menuContent.xhtml' : ''}"/>
+
+
+-->

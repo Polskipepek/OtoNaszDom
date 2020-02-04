@@ -7,7 +7,11 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,5 +38,23 @@ public class DataConnect {
             } catch (SQLException ex) {
             }
         }
+    }
+
+    public static int getUserCount() {
+        Connection con = null;
+        Statement stmt = null;
+
+        try {
+            con = getConnectionToDatabase();
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM USERS");
+            System.out.println("xdxd "+rs.toString());
+            return Integer.parseInt(rs.toString());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DataConnect.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return -1;
     }
 }

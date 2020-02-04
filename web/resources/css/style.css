@@ -5,17 +5,17 @@ body {
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 23px;
     line-height: 1.7em; 
+    background-position: top center;
     background-color: #291a07;
     background-image: url(http://localhost:8080/resources/images/tooplate_body.png);
-    background-position: top center;
     background-repeat: no-repeat;
 }
 
 .centered{
     margin-top: 20vh !important;
-    margin-left: 60vh;    
-    margin-right: 60vh;
-
+    margin-left: 10vh;    
+    margin-right: 10vh;
+    inline-size: max-content !important;
     width: auto;
     box-sizing: border-box;
     border:  5px solid beige;
@@ -36,31 +36,22 @@ a, a:link, a:visited {
 
 .img { border: none; }
 
-
-
-#RegisterInputFieldsTable {
+.RegisterInputFieldsTable {
     height: 43px;
 
 }
 
 
-#loginToRegisterFont{
-    margin-top: 10px;
+#toggleLoginRegister{
     font-size: 25px;
     color: red;
-
-    position: absolute;
-    bottom: 10vh;
-    margin-left: 93vh;
 }
 
 .credits{
     position: absolute;
     right: 1vh;
     bottom: 0;
-
     text-align: center;
-
 
 }
 
@@ -71,5 +62,4 @@ a, a:link, a:visited {
 
 .Form{
     background: gray;
-
 }

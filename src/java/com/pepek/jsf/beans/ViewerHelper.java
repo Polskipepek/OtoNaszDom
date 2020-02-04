@@ -8,7 +8,6 @@ package com.pepek.jsf.beans;
 import java.io.Serializable;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -18,7 +17,7 @@ import javax.faces.bean.SessionScoped;
 @ApplicationScoped
 public class ViewerHelper implements Serializable {
 
-    private String currentForm = "/userLogin.xhtml";
+    private String currentForm = "userLogin.xhtml";
     private boolean toggleForm = false;
     private String helper = "";
 
@@ -36,15 +35,9 @@ public class ViewerHelper implements Serializable {
     }
 
     public String getCurrentForm() {
-        String temp = setToggleForm() ? "/userLogin.xhtml" : "/userRegister.xhtml";
+        String temp = setToggleForm() ? "userLogin.xhtml" : "userRegister.xhtml";
         helper = temp;
         return temp;
     }
-
-
-
-
-
-
 
 }

@@ -6,7 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone">
     <h:head>
-        <title>Logowanie</title>
+        <link rel="stylesheet" href="resources/css/registerStyle.css"/>
+
+        <title>Rejestracja</title>
 
     </h:head>
     <h:body>
@@ -15,7 +17,7 @@
             <h:form class="centered Form" enctype="multipart/form-data">
                 <h3 style="font-size: 50px">Oto Nasz Dom</h3>
 
-                <komponentyZlozone:Rejestracja 
+                <komponentyZlozone:Rejestracja
                     usernameLabel="#{bundle['rejestracja.pseudonim']}"
                     passwordLabel="#{bundle['rejestracja.haslo']}"
                     emailLabel="#{bundle['rejestracja.mail']}"
@@ -24,12 +26,26 @@
                     sexLabel="#{bundle['rejestracja.plec']}"
                     avatarLabel="#{bundle['rejestracja.awatar']}"
 
+                    usernameValue="#{registerController.user}"
+                    passwordValue="#{registerController.haslo}"
+                    emailValue="#{registerController.email}"
+                    mobileValue="#{registerController.telefon}"
+                    dateValue="#{registerController.data}"
+                    sexValue="#{registerController.plec}"
+                    avatarValue="#{registerController.awatar}"
+
                     registerButtonLabel="#{bundle['rejestracja.zarejestruj']}"
+                    registerButtonAction="#{registerController.validateRegister()}"
+
                     />
 
+                <br/><br/>
+                <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userLogin">
+                    <f:ajax  execute="toogle" render="toogleRender" event="click"/>
+                </h:button>
             </h:form>
         </center>
-
+        <div class="credits">&copy;Michał Stasinkiewicz</div>
     </h:body>
 </html>
 
