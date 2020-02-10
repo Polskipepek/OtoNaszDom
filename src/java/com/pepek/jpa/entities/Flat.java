@@ -19,6 +19,16 @@ import javax.persistence.Temporal;
 @Entity
 public class Flat implements Serializable {
 
+    public Flat(String name, String descriprion, float price, Image[] images, Date postDate) {
+        this.name = name;
+        this.descriprion = descriprion;
+        this.price = price;
+        this.images = images;
+        this.postDate = postDate;
+    }
+
+    public Flat() {
+    }
     private String name;
     private String descriprion;
     private float price;

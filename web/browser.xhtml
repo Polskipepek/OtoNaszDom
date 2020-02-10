@@ -3,30 +3,104 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:head>
         <link rel="stylesheet" href="resources/css/browserStyle.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        -->
         <title>#{bundle['browser.szukaj']}</title>
     </h:head>
     <h:body>
+        <div>
+            <h:form enctype="multipart/form-data">
+                <ui:include src="menuContent.xhtml"/>
+                <center>
+                    <h:inputText class="search" value="#{browserController.searchString}"></h:inputText>
 
-        <h:form>
-            <ui:include src="menuContent.xhtml"/>
-            <center>
-                <h:inputText class="search" value="#{browserController.searchString}"></h:inputText>
-                <h:commandButton value="#{bundle['browser.szukaj']}" action="#{browserController.SearchByString(browserController.searchString)}" >
-                    <f:ajax execute="search" render="output"></f:ajax>
-                </h:commandButton>
-                <h2>
-                    <h:outputText id="output" value="#{bookBean.book.title}"></h:outputText>
-                </h2><br/>
-                
-                
-                
-            </center>
-        </h:form>
+                    <h:commandButton value="#{bundle['browser.szukaj']}" action="#{browserController.GetFlatsByString(browserController.searchString)}" >
+                        <f:ajax execute="search" render="output"></f:ajax>
+                    </h:commandButton>
+                    <br/>
 
+
+                    <h:commandButton class="openPopupButton" value="#{bundle['browser.otworzPopupDodaj']}">
+                        <f:ajax render="@form" listener="#{browserController.showPopupAddFlat()}" />
+                    </h:commandButton>
+                    <div>
+                        <h:dataTable value="#{browserController.searchString == '' ? browserController.GetAllFlats() 
+                                              : browserController.GetFlatsByString(browserController.searchString) }"
+                                     var="b"
+                                     styleClass="browserStyle"
+                                     headerClass="browserStyleHeader"
+                                     rowClasses="browserStyleOddRow, browserStyleEvenRow" >
+
+                            <h:column>
+                                <f:facet name="header">
+                                    #{bundle['browser.flatId']}
+                                </f:facet>
+                                #{b.id}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    #{bundle['browser.flatName']}
+                                </f:facet>
+                                #{b.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    #{bundle['browser.flatDesc']}
+                                </f:facet>
+                                #{b.descriprion}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    #{bundle['browser.flatPrice']}
+                                </f:facet>
+                                #{b.price}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    #{bundle['browser.flatDate']}
+                                </f:facet>
+                                #{b.postDate}
+                            </h:column>
+
+                        </h:dataTable>
+                    </div>
+                    <h:form class="popup-panel-overlay" enctype="multipart/form-data" rendered="#{browserController.showPopup}">
+                        <center class="popup-panel">
+                            <komponentyZlozone:DodawanieMieszkania
+
+                                nameLabel="#{bundle['mieszkanie.nazwa']}"
+                                nameValue="#{browserController.name}"
+
+                                descriptionLabel="#{bundle['mieszkanie.opis']}"
+                                descriptionValue="#{browserController.desc}"
+                                
+                                priceLabel="#{bundle['mieszkanie.cena']}"
+                                priceValue="#{browserController.price}"
+
+                                dateLabel="#{bundle['mieszkanie.data']}"
+                                dateValue="#{browserController.data}"
+
+                                imagesLabel="#{bundle['mieszkanie.obraz']}"
+                                imagesValue="#{browserController.imgs}"
+
+                                addFlatButtonLabel="#{bundle['mieszkanie.dodajMieszkanie']}"
+                                addFlatButtonAction="#{browserController.AddFlat()}"
+
+                                /><br/>
+                        </center>
+
+                    </h:form>
+
+
+                </center>
+            </h:form>
+
+        </div>
     </h:body>
 </html>
 

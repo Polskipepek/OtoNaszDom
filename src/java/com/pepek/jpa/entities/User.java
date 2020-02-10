@@ -9,13 +9,17 @@ import com.pepek.misc.Utilieties;
 import java.awt.Image;
 import java.sql.Blob;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Michal
  */
+@Entity
 public class User {
     
+    @Id
     private int id;
     private String username, password, email, address;
     private Utilieties.Sex sex;

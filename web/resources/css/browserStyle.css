@@ -45,3 +45,16 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+.popup-panel-overlay{
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    margin: auto;
+}
+.popup-panel{
+    margin: auto;
+    background-color: grey;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #DDD;
+}
