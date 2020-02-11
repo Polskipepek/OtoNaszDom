@@ -17,7 +17,7 @@
             <h:form enctype="multipart/form-data">
                 <ui:include src="menuContent.xhtml"/>
                 <center>
-                    <h:inputText class="search" value="#{browserController.searchString}"></h:inputText>
+                    <h:inputText class="search"  value="#{browserController.searchString}"></h:inputText>
 
                     <h:commandButton value="#{bundle['browser.szukaj']}" action="#{browserController.GetFlatsByString(browserController.searchString)}" >
                         <f:ajax execute="search" render="output"></f:ajax>
