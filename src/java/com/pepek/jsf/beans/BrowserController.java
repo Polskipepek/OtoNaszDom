@@ -5,8 +5,8 @@
  */
 package com.pepek.jsf.beans;
 
-import com.pepek.jpa.entities.Flat;
-import database.FlatDAO;
+import jpa.entities.Flat;
+import databaseIntegration.FlatDAO;
 import java.awt.Image;
 import java.time.LocalDateTime;
 import java.util.Date;

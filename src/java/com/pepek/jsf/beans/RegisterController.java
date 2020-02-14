@@ -13,16 +13,15 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
+import com.pepek.businesstier.MainEJB;
 import com.pepek.misc.Utilieties.Sex;
-import database.RegisterDAO;
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.sql.SQLException;
 //import java.sql.Blob;
 import javax.servlet.http.Part;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -47,17 +46,15 @@ public class RegisterController implements Serializable {
     private Part awatar;
     private Date data;
 
+    MainEJB mainEJB;
     //validate
-    public String validateRegister() throws SQLException {
+    public String validateRegister() throws SQLException, NoSuchAlgorithmException {
         boolean valid = false;
-        try {
-            valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, new java.sql.Date(data.getTime()), plec, adres, awatar);
-        } catch (IOException ex) {
-            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, new java.sql.Date(data.getTime()), plec, adres, awatar);
+        mainEJB.AddUserToDB(user, haslo, email, telefon, data, plec, adres, awatar);
         if (valid) {
-           HttpSession session = SessionUtils.getSession();
-           session.setAttribute("username", user);
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("username", user);
             return "userLogin";
         } else {
             FacesContext.getCurrentInstance().addMessage(

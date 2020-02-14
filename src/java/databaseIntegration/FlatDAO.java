@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package databaseIntegration;
 
-import com.pepek.jpa.entities.Flat;
+import jpa.entities.Flat;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;

@@ -13,8 +13,8 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.pepek.jpa.entities.User;
-import database.LoginDAO;
+import jpa.entities.User;
+import databaseIntegration.LoginDAO;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
@@ -52,15 +52,13 @@ public class LoginController implements Serializable {
         this.user = user;
     }
 
-    public String GoogleLoggedIn(String accessToken) {
-        int a= 5;
-        a++;
-        return null;
-    }
+
 
     //validate login
     public String validateUsernamePassword() {
+        
         boolean valid = LoginDAO.validate(user, pwd);
+        
         if (valid) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
@@ -88,5 +86,11 @@ public class LoginController implements Serializable {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "index";
+    }
+    
+        public String GoogleLoggedIn(String accessToken) {
+        int a= 5;
+        a++;
+        return null;
     }
 }

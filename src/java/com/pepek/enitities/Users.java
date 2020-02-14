@@ -3,11 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enitities;
+package com.pepek.enitities;
 
+import com.pepek.integrationTier.UsersFacade;
+import com.pepek.misc.Utilieties;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +26,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,7 +49,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByNumber", query = "SELECT u FROM Users u WHERE u.number = :number")
     , @NamedQuery(name = "Users.findBySex", query = "SELECT u FROM Users u WHERE u.sex = :sex")
     , @NamedQuery(name = "Users.findByDate", query = "SELECT u FROM Users u WHERE u.date = :date")
-    , @NamedQuery(name = "Users.findByIdtoken", query = "SELECT u FROM Users u WHERE u.idtoken = :idtoken")})
+    , @NamedQuery(name = "Users.findByIdtoken", query = "SELECT u FROM Users u WHERE u.idtoken = :idtoken")
+    , @NamedQuery(name = "Users.findBySalt", query = "SELECT u FROM Users u WHERE u.salt = :salt")
+
+})
+
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,10 +72,13 @@ public class Users implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "PASSWORD")
     private String password;
+    @Size(min = 1, max = 32)
+    @Column(name = "SALT")
+    private String salt;
     @Size(max = 100)
     @Column(name = "ADDRESS")
     private String address;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
     private String email;
@@ -80,7 +96,8 @@ public class Users implements Serializable {
     @Size(max = 5000)
     @Column(name = "IDTOKEN")
     private String idtoken;
-    @OneToMany(mappedBy="user")
+
+    @OneToMany(mappedBy = "user")
     List<Flatstable> userflats;
 
     public List<Flatstable> getUserflats() {
@@ -90,19 +107,22 @@ public class Users implements Serializable {
     public void setUserflats(List<Flatstable> userflats) {
         this.userflats = userflats;
     }
-    
-
-    public Users() {
-    }
 
     public Users(Integer id) {
         this.id = id;
     }
 
-    public Users(Integer id, String username, String password) {
+    public Users(Integer id, String username, String password, String address, String email, Integer number, String sex, Date date, Serializable avatar, String salt) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.address = address;
+        this.email = email;
+        this.number = number;
+        this.sex = sex;
+        this.date = date;
+        this.avatar = avatar;
+        this.salt = salt;
     }
 
     public Integer getId() {
@@ -209,5 +229,13 @@ public class Users implements Serializable {
     public String toString() {
         return "enitities.Users[ id=" + id + " ]";
     }
-    
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
 }

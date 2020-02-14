@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package integrationTier;
+package com.pepek.integrationTier;
 
-import enitities.Flatstable;
+import com.pepek.enitities.Flatstable;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

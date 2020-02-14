@@ -5,7 +5,7 @@
  */
 package com.pepek.jsf.beans;
 
-import com.pepek.jpa.entities.User;
+import jpa.entities.User;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

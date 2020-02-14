@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.jpa.entities;
+package jpa.entities;
 
 import java.awt.Image;
 import java.io.Serializable;

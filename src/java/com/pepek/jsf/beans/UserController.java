@@ -5,7 +5,7 @@
  */
 package com.pepek.jsf.beans;
 
-import com.pepek.jpa.entities.User;
+import jpa.entities.User;
 import com.pepek.misc.Utilieties;
 import java.awt.Image;
 import java.util.Date;
