@@ -48,7 +48,6 @@ public class MainEJB {
         return null;
     }
 
-    /*
     public boolean LoginAuthentication(String username, String password) {
         Users user = GetUser(username);
         byte[] encryptedPassword = null;
@@ -67,20 +66,20 @@ public class MainEJB {
 
     public void AddUserToDB(String user, String password, String email, int telefon, Date date,
             Utilieties.Sex plec, String adres, Part awatar) throws NoSuchAlgorithmException {
-        String salt = GenerateNewSalt();
+        String salt = CreateNewSalt();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encryptedPassword = digest.digest(password.concat(salt).getBytes());
 
         usersFacade.create(new Users(usersFacade.count() + 1, user, Arrays.toString(encryptedPassword), adres, email, telefon, plec.name(),
-                date, (Serializable) awatar, GenerateNewSalt()));
+                date, (Serializable) awatar, CreateNewSalt()));
 
     }
 
-    protected String GenerateNewSalt() {
+    protected String CreateNewSalt() {
         SecureRandom random = new SecureRandom();
         random.generateSeed(32);
         System.out.println("randomSalt: " + random);
         return random.toString();
     }
-     */
+
 }
