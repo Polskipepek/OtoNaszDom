@@ -26,7 +26,7 @@
                     sexLabel="#{bundle['rejestracja.plec']}"
                     avatarLabel="#{bundle['rejestracja.awatar']}"
 
-                    usernameValue="#{registerController.user}"
+                    usernameValue="#{registerController.username}"
                     passwordValue="#{registerController.haslo}"
                     emailValue="#{registerController.email}"
                     mobileValue="#{registerController.telefon}"
@@ -35,12 +35,12 @@
                     avatarValue="#{registerController.awatar}"
 
                     registerButtonLabel="#{bundle['rejestracja.zarejestruj']}"
-                    registerButtonAction="#{registerController.validateRegister()}"
+                    registerButtonAction="#{registerController.registerValidation()}"
 
                     />
 
                 <br/><br/>
-                <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userLogin">
+                <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userLogin" style="font-size: 25px; box-shadow: gray; padding: 5px;">
                     <f:ajax  execute="toogle" render="toogleRender" event="click"/>
                 </h:button>
             </h:form>

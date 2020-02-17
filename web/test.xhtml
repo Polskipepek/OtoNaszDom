@@ -14,7 +14,7 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <link rel="stylesheet" href="resources/css/browserStyle.css"/>
     </h:head>
-    <body>
+    <h:body>
         <h:form  enctype="multipart/form-data">
             <h:commandButton class="openPopupButton" value="#{bundle['browser.otworzPopupDodaj']}">
                 <f:ajax render="@form" listener="#{browserController.showPopupAddFlat()}" />
@@ -67,5 +67,5 @@ and open the template in the editor.
 
         </h:form>
 
-    </body>
+    </h:body>
 </html>

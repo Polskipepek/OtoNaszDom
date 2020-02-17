@@ -5,7 +5,6 @@
  */
 package com.pepek.jsf.beans;
 
-import jpa.entities.User;
 import com.pepek.misc.Utilieties;
 import java.awt.Image;
 import java.util.Date;
@@ -19,11 +18,10 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "userController")
 @RequestScoped
-public class UserController extends User {
+public class UserController {
 
     FacesContext context = FacesContext.getCurrentInstance();
-    
-    
+
     public boolean ValidateUserRegisterCredentials() {
         return false;
     }
@@ -33,7 +31,5 @@ public class UserController extends User {
         context.getApplication().evaluateExpressionGet(context, "#{userController}", Object.class);
         return false;
     }
-
-
 
 }

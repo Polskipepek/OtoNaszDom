@@ -5,8 +5,8 @@
  */
 package com.pepek.jsf.beans;
 
-import jpa.entities.Flat;
-import databaseIntegration.FlatDAO;
+//import jpa.entities.Flat;
+///import databaseIntegration.FlatDAO;
 import java.awt.Image;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -47,31 +47,6 @@ public class BrowserController {
     }
 
     private String searchString = "";
-    private Flat[] flats;
-
-    public Flat[] GetAllFlats() {
-        flats = FlatDAO.GetFlats(searchString);
-
-        Flat[] xd = new Flat[2];
-        xd[0] = new Flat("mieszkaniako", "jakis tam opis", 12443f, null, new Date(399939439439l));
-        xd[1] = new Flat("mieszka2ko", "jakis tam opis, zeby nie bylo", 52443f, null, new Date(499939439439l));
-        return xd;
-        //return flats;
-    }
-
-    public void AddFlat() {
-        Flat flat = new Flat(name, desc, price, imgs, data);
-        if (flat.getName().length() > 0 && flat.getDescriprion().length() > 0) {
-            FlatDAO.AddFlat(flat);
-            hidePopupAddFlat();
-        }
-
-    }
-
-    public Flat[] GetFlatsByString(String input) {
-        //TO DO
-        return null;
-    }
 
     public String getSearchString() {
         return searchString;
@@ -79,14 +54,6 @@ public class BrowserController {
 
     public void setSearchString(String search) {
         searchString = search;
-    }
-
-    public Flat[] getFlats() {
-        return flats;
-    }
-
-    public void setFlats(Flat[] flats) {
-        this.flats = flats;
     }
 
     public boolean isShowPopup() {

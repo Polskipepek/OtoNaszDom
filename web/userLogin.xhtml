@@ -20,12 +20,12 @@
 
                 <komponentyZlozone:Logowanie 
                     usernameLabel="#{bundle['logowanie.pseudonim']}"
-                    usernameValue="#{loginController.user}"
+                    usernameValue="#{loginController.usernameLogin}"
                     passwordLabel="#{bundle['logowanie.haslo']}"
-                    passwordValue="#{loginController.pwd}"
+                    passwordValue="#{loginController.passwordLogin}"
 
                     loginButtonLabel="#{bundle['logowanie.zaloguj']}"
-                    loginButtonAction="#{loginController.validateUsernamePassword()}" 
+                    loginButtonAction="#{loginController.loginAuthentication()}" 
 
                     />
 
@@ -35,7 +35,7 @@
 
 
                 <br/><br/>
-                <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userRegister">
+                <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userRegister" style="font-size: 25px; box-shadow: gray; padding: 5px;">
                     <f:ajax  execute="toogle" render="toogleRender" event="click"/>
                 </h:button>
             </h:form>

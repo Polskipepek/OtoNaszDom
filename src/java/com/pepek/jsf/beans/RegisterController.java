@@ -48,6 +48,7 @@ public class RegisterController implements Serializable {
     private Date data;
 
     MainEJB mainEJB;
+
     //validate
     public String validateRegister() throws SQLException, NoSuchAlgorithmException {
         boolean valid = true;

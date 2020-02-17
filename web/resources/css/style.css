@@ -42,9 +42,12 @@ a, a:link, a:visited {
 }
 
 
-#toggleLoginRegister{
-    font-size: 25px;
+button{
+    font-size: 35px !important;
     color: red;
+    padding: 100px;
+    box-sizing: 5px;
+    box-shadow: gray;
 }
 
 .credits{

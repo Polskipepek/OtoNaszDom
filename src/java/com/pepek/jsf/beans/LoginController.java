@@ -14,7 +14,7 @@ import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.pepek.businesstier.MainEJB;
-import databaseIntegration.LoginDAO;
+//import databaseIntegration.LoginDAO;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;

@@ -28,7 +28,7 @@
 
         <composite:attribute name = "registerButtonLabel" />
         <composite:attribute name = "registerButtonAction" method-signature="java.lang.String validateRegister()"
-                              />
+                             />
     </composite:interface>
 
     <composite:implementation>
@@ -36,21 +36,34 @@
 
             <h:panelGrid columns = "2" id = "loginPanel">
                 #{cc.attrs.usernameLabel} : 
-                <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" />
+                <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" >
+                    <f:validateLength minimum="5" maximum="25" />
+                </h:inputText>
 
                 #{cc.attrs.passwordLabel} : 
-                <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" />
+                <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" >
+                    <f:validateLength minimum="5" maximum="25"/>
+                </h:inputSecret>
 
                 #{cc.attrs.emailLabel} :
-                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true" label="#{cc.attrs.emailLabel}"/>
+                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true" label="#{cc.attrs.emailLabel}">
+                    <f:validateLength minimum="5" maximum="45"/>
+                </h:inputText>
 
                 #{cc.attrs.mobileLabel} :
-                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}"/>
+                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}" 
+                                onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                    <f:validateLength minimum="7" maximum="11"/>
+                    
+                </h:inputText>
 
                 #{cc.attrs.dateLabel} :
-                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="#{cc.attrs.dateLabel}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"/> 
-                </h:inputText>
+                <!--
+                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="RRRR-MM-DD"><f:convertDateTime pattern="yyyy-MM-dd"/> </h:inputText>
+                -->
+
+                <input type="date" value="#{cc.attrs.dateValue}" />
+
 
                 #{cc.attrs.sexLabel} :
                 <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}">

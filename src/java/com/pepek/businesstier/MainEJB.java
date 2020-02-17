@@ -9,12 +9,10 @@ import com.pepek.enitities.Flatstable;
 import com.pepek.enitities.Users;
 import com.pepek.integrationTier.FlatstableFacade;
 import com.pepek.integrationTier.UsersFacade;
-import com.pepek.misc.FlatInfo;
 import com.pepek.misc.Utilieties;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -28,7 +26,6 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 /**
  *
