@@ -59,7 +59,7 @@ public class Flatstable implements Serializable {
 
     @ManyToOne
     Users user;
-    
+
     public Flatstable() {
     }
 
@@ -67,10 +67,11 @@ public class Flatstable implements Serializable {
         this.id = id;
     }
 
-    public Flatstable(Integer id, String name, String description) {
+    public Flatstable(Integer id, String name, String description, Serializable image) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.image = (Serializable) image;
     }
 
     public Integer getId() {
@@ -137,5 +138,5 @@ public class Flatstable implements Serializable {
     public String toString() {
         return "enitities.Flatstable[ id=" + id + " ]";
     }
-    
+
 }
