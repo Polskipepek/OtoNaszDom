@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.entities;
+package com.pepek.integrationTier.enitities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Flatstable.findByName", query = "SELECT f FROM Flatstable f WHERE f.name = :name")
     , @NamedQuery(name = "Flatstable.findByDescription", query = "SELECT f FROM Flatstable f WHERE f.description = :description")
     , @NamedQuery(name = "Flatstable.findByPrice", query = "SELECT f FROM Flatstable f WHERE f.price = :price")})
-public class FlatsTable implements Serializable {
+public class Flatstable implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,18 +59,19 @@ public class FlatsTable implements Serializable {
 
     @ManyToOne
     Users user;
-    
-    public FlatsTable() {
+
+    public Flatstable() {
     }
 
-    public FlatsTable(Integer id) {
+    public Flatstable(Integer id) {
         this.id = id;
     }
 
-    public FlatsTable(Integer id, String name, String description) {
+    public Flatstable(Integer id, String name, String description, Serializable image) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.image = (Serializable) image;
     }
 
     public Integer getId() {
@@ -123,10 +124,10 @@ public class FlatsTable implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FlatsTable)) {
+        if (!(object instanceof Flatstable)) {
             return false;
         }
-        FlatsTable other = (FlatsTable) object;
+        Flatstable other = (Flatstable) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -137,5 +138,5 @@ public class FlatsTable implements Serializable {
     public String toString() {
         return "enitities.Flatstable[ id=" + id + " ]";
     }
-    
+
 }

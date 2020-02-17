@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.jsf.beans;
+package com.pepek.businessTier.beans;
 
 import java.awt.Image;
 import java.time.LocalDateTime;

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.businesstier;
+package com.pepek.businessTier.EJBs;
 
-import com.pepek.enitities.Flatstable;
-import com.pepek.enitities.Users;
-import com.pepek.integrationTier.FlatstableFacade;
-import com.pepek.integrationTier.UsersFacade;
+import com.pepek.integrationTier.enitities.Flatstable;
+import com.pepek.integrationTier.enitities.Users;
+import com.pepek.integrationTier.facades.FlatstableFacade;
+import com.pepek.integrationTier.facades.UsersFacade;
 import com.pepek.misc.Utilieties;
 import java.io.File;
 import java.io.IOException;

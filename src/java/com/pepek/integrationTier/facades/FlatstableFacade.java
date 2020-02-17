@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.integrationTier;
+package com.pepek.integrationTier.facades;
 
-import com.pepek.enitities.Users;
+import com.pepek.integrationTier.enitities.Flatstable;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Michal
  */
 @Stateless
-public class UsersFacade extends AbstractFacade<Users> {
+public class FlatstableFacade extends AbstractFacade<Flatstable> {
 
     @PersistenceContext(unitName = "OtoNaszDomgitPU")
     private EntityManager em;
@@ -25,9 +25,8 @@ public class UsersFacade extends AbstractFacade<Users> {
         return em;
     }
 
-    public UsersFacade() {
-        super(Users.class);
+    public FlatstableFacade() {
+        super(Flatstable.class);
     }
-
-
+    
 }

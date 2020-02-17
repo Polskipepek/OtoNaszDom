@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.entities;
+package com.pepek.integrationTier.enitities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,7 +41,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByNumber", query = "SELECT u FROM Users u WHERE u.number = :number")
     , @NamedQuery(name = "Users.findBySex", query = "SELECT u FROM Users u WHERE u.sex = :sex")
     , @NamedQuery(name = "Users.findByDate", query = "SELECT u FROM Users u WHERE u.date = :date")
-    , @NamedQuery(name = "Users.findByIdtoken", query = "SELECT u FROM Users u WHERE u.idtoken = :idtoken")})
+    , @NamedQuery(name = "Users.findByIdtoken", query = "SELECT u FROM Users u WHERE u.idtoken = :idtoken")
+    , @NamedQuery(name = "Users.findBySalt", query = "SELECT u FROM Users u WHERE u.salt = :salt")
+
+})
+
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,10 +64,13 @@ public class Users implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "PASSWORD")
     private String password;
+    @Size(min = 1, max = 32)
+    @Column(name = "SALT")
+    private String salt;
     @Size(max = 100)
     @Column(name = "ADDRESS")
     private String address;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
     private String email;
@@ -80,25 +88,23 @@ public class Users implements Serializable {
     @Size(max = 5000)
     @Column(name = "IDTOKEN")
     private String idtoken;
-    @OneToMany(mappedBy = "user")
-    List<FlatsTable> userflats;
 
-    public List<FlatsTable> getUserflats() {
+    @OneToMany(mappedBy = "user")
+    List<Flatstable> userflats;
+
+    public List<Flatstable> getUserflats() {
         return userflats;
     }
 
-    public void setUserflats(List<FlatsTable> userflats) {
+    public void setUserflats(List<Flatstable> userflats) {
         this.userflats = userflats;
-    }
-
-    public Users() {
     }
 
     public Users(Integer id) {
         this.id = id;
     }
 
-    public Users(int id, String username, String password, String address, String email, Integer number, String sex, Date date, Serializable avatar) {
+    public Users(Integer id, String username, String password, String address, String email, Integer number, String sex, Date date, Serializable avatar, String salt) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -108,6 +114,7 @@ public class Users implements Serializable {
         this.sex = sex;
         this.date = date;
         this.avatar = avatar;
+        this.salt = salt;
     }
 
     public Integer getId() {
@@ -213,6 +220,14 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "enitities.Users[ id=" + id + " ]";
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
 }

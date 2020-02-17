@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.jsf.beans;
+package com.pepek.businessTier.beans;
 
 
-import com.pepek.businesstier.MainEJB;
+import com.pepek.businessTier.EJBs.MainEJB;
 import com.pepek.misc.SessionUtils;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
