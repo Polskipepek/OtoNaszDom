@@ -15,6 +15,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.pepek.businesstier.MainEJB;
 import com.pepek.misc.Utilieties.Sex;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
@@ -43,13 +44,13 @@ public class RegisterController implements Serializable {
     private String adres;
     private int telefon;
     private Sex plec;
-    private Part awatar;
+    private File awatar;
     private Date data;
 
     MainEJB mainEJB;
     //validate
     public String validateRegister() throws SQLException, NoSuchAlgorithmException {
-        boolean valid = false;
+        boolean valid = true;
         //valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, new java.sql.Date(data.getTime()), plec, adres, awatar);
         mainEJB.AddUserToDB(user, haslo, email, telefon, data, plec, adres, awatar);
         if (valid) {
@@ -130,11 +131,11 @@ public class RegisterController implements Serializable {
         this.data = data;
     }
 
-    public Part getAwatar() {
+    public File getAwatar() {
         return awatar;
     }
 
-    public void setAwatar(Part awatar) {
+    public void setAwatar(File awatar) {
         this.awatar = awatar;
     }
 
