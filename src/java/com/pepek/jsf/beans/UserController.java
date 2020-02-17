@@ -5,9 +5,6 @@
  */
 package com.pepek.jsf.beans;
 
-import com.pepek.misc.Utilieties;
-import java.awt.Image;
-import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;

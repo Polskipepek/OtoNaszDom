@@ -107,7 +107,7 @@ public class MainEJB {
         return fileContent;
     }
 
-    public List<Flatstable> ShowFlats(String query, Users owner) {
+    public List<Flatstable> GetFlats(String query, Users owner) {
         List<Flatstable> flatsRoot = flatstableFacade.findAll();
         List<Flatstable> flatsInfo = new ArrayList<>();
 
@@ -122,7 +122,6 @@ public class MainEJB {
                 }
             }
         } else if (owner != null) {
-
             if (query.length() > 0) {
                 for (Flatstable flat : flatsRoot) {
                     if (Objects.equals(owner.getId(), flat.getId()) && (flat.getName().contains(query) || flat.getDescription().contains(query))) {

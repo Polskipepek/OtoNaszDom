@@ -5,17 +5,9 @@
  */
 package com.pepek.jsf.beans;
 
-import com.pepek.misc.SessionUtils;
-import com.google.api.client.auth.oauth2.BearerToken;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpRequestFactory;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
+
 import com.pepek.businesstier.MainEJB;
-//import databaseIntegration.LoginDAO;
-import java.io.IOException;
+import com.pepek.misc.SessionUtils;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -59,8 +51,11 @@ public class LoginController implements Serializable {
         boolean valid = false;
         valid = mainEJB.LoginAuthentication(user, pwd);
         if (valid) {
+            //Używamy sesji, aby przy wylogoweaniu zakończyć / unieważnić sesje, 
+            //w celu uniemożliwienia w przypadku powrotu do poprzedniej strony modyfikacji danych i obsługi zdarzeń
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
+            
             return "/home";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -72,6 +67,23 @@ public class LoginController implements Serializable {
         }
     }
 
+    //logout event, invalidate session
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "index";
+    }
+
+}
+/*
+
+    public String GoogleLoggedIn(String accessToken) {
+        int a = 5;
+        a++;
+        return null;
+    }
+
+
     public static HttpResponse executeGet(
             HttpTransport transport, JsonFactory jsonFactory, String accessToken, GenericUrl url)
             throws IOException {
@@ -80,16 +92,4 @@ public class LoginController implements Serializable {
         return requestFactory.buildGetRequest(url).execute();
     }
 
-    //logout event, invalidate session
-    public String logout() {
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
-        return "index";
-    }
-
-    public String GoogleLoggedIn(String accessToken) {
-        int a = 5;
-        a++;
-        return null;
-    }
-}
+*/

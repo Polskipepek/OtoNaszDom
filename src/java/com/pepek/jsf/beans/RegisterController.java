@@ -5,29 +5,17 @@
  */
 package com.pepek.jsf.beans;
 
-import com.pepek.misc.SessionUtils;
-import com.google.api.client.auth.oauth2.BearerToken;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpRequestFactory;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
 import com.pepek.businesstier.MainEJB;
 import com.pepek.misc.Utilieties.Sex;
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
-//import java.sql.Blob;
-import javax.servlet.http.Part;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /*
  *@author Michal
@@ -52,11 +40,8 @@ public class RegisterController implements Serializable {
     //validate
     public String validateRegister() throws SQLException, NoSuchAlgorithmException {
         boolean valid = true;
-        //valid = RegisterDAO.InsertRegister(user, haslo, email, telefon, new java.sql.Date(data.getTime()), plec, adres, awatar);
         mainEJB.AddUserToDB(user, haslo, email, telefon, data, plec, adres, awatar);
         if (valid) {
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", user);
             return "userLogin";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -66,14 +51,6 @@ public class RegisterController implements Serializable {
                             "proszę wpisać poprawne dane logowania"));
             return "";
         }
-    }
-
-    public static HttpResponse executeGet(
-            HttpTransport transport, JsonFactory jsonFactory, String accessToken, GenericUrl url)
-            throws IOException {
-        Credential credential = new Credential(BearerToken.authorizationHeaderAccessMethod()).setAccessToken(accessToken);
-        HttpRequestFactory requestFactory = transport.createRequestFactory(credential);
-        return requestFactory.buildGetRequest(url).execute();
     }
 
     public String getUser() {
@@ -141,3 +118,14 @@ public class RegisterController implements Serializable {
     }
 
 }
+/*
+    public static HttpResponse executeGet(
+            HttpTransport transport, JsonFactory jsonFactory, String accessToken, GenericUrl url)
+            throws IOException {
+        Credential credential = new Credential(BearerToken.authorizationHeaderAccessMethod()).setAccessToken(accessToken);
+        HttpRequestFactory requestFactory = transport.createRequestFactory(credential);
+        return requestFactory.buildGetRequest(url).execute();
+    }
+
+
+ */
