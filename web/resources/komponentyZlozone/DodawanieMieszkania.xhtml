@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:composite = "http://java.sun.com/jsf/composite"
+      >
+
+    <composite:interface>
+        <composite:attribute name = "nameLabel" />
+        <composite:attribute name = "nameValue" />
+
+        <composite:attribute name = "descriptionLabel" />
+        <composite:attribute name = "descriptionValue" />
+
+        <composite:attribute name = "priceValue"    />
+        <composite:attribute name = "priceLabel"    />
+
+        <composite:attribute name = "dateValue"   />
+        <composite:attribute name = "dateLabel"   />
+
+        <composite:attribute name = "imagesValue"   />
+        <composite:attribute name = "imagesLabel"   />
+
+        <composite:attribute name = "addFlatButtonLabel" />
+        <composite:attribute name = "addFlatButtonAction" method-signature="java.lang.String AddFlat()" />
+
+    </composite:interface>
+
+    <composite:implementation>
+        <h:form id="Event" enctype="multipart/form-data" >
+
+            <h:panelGrid columns="2" id="addFlatPanel">
+
+                #{cc.attrs.nameLabel} : 
+                <h:inputText id = "username" value = "#{cc.attrs.nameValue}"    required="true" label="#{cc.attrs.nameLabel}" />
+
+                #{cc.attrs.descriptionLabel} : 
+                <h:inputText id = "password" value = "#{cc.attrs.descriptionValue}"  required="true" label="#{cc.attrs.descriptionLabel}" />
+
+                #{cc.attrs.priceLabel} :
+                <h:inputText    id="email"      value="#{cc.attrs.priceValue}" required="true" label="#{cc.attrs.priceLabel}"/>
+
+
+                #{cc.attrs.dateLabel} :
+                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="#{cc.attrs.dateLabel}">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/> 
+                </h:inputText>
+
+                #{cc.attrs.imagesLabel}
+                <h:inputFile    id="avatar"     value="#{cc.attrs.imagesValue}"   label="#{cc.attrs.imagesLabel}"/>
+
+                <h:commandButton 
+                    action = "#{cc.attrs.addFlatButtonAction}" 
+                    value = "#{cc.attrs.addFlatButtonLabel}"
+                    style="padding: 10px"
+                    />
+
+            </h:panelGrid>
+        </h:form>
+    </composite:implementation>
+</html>

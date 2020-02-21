@@ -1,0 +1,68 @@
+
+body {
+    padding: 0;
+    color: #afa698;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 23px;
+    line-height: 1.7em; 
+    background-position: top center;
+    background-color: #291a07;
+    background-image: url(http://localhost:8080/resources/images/tooplate_body.png);
+    background-repeat: no-repeat;
+}
+
+.centered{
+    margin-top: 20vh !important;
+    margin-left: 10vh;    
+    margin-right: 10vh;
+    inline-size: max-content !important;
+    width: auto;
+    box-sizing: border-box;
+    border:  5px solid beige;
+    padding: 20px;
+    color: white;
+}
+
+a:hover { 
+    text-decoration: underline; 
+}
+
+a, a:link, a:visited { 
+    color: #c6c888; 
+    font-weight: 700; 
+    text-decoration: none; 
+    font-size: 11px; 
+}
+
+.img { border: none; }
+
+.RegisterInputFieldsTable {
+    height: 43px;
+
+}
+
+
+button{
+    font-size: 35px !important;
+    color: red;
+    padding: 100px;
+    box-sizing: 5px;
+    box-shadow: gray;
+}
+
+.credits{
+    position: absolute;
+    right: 1vh;
+    bottom: 0;
+    text-align: center;
+
+}
+
+#messages{
+    top: 5vh;
+    margin: auto;
+}
+
+.Form{
+    background: gray;
+}

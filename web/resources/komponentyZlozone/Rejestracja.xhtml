@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:composite = "http://java.sun.com/jsf/composite">
+
+    <composite:interface>
+        <composite:attribute name = "usernameLabel" />
+        <composite:attribute name = "usernameValue" />
+        <composite:attribute name = "passwordLabel" />
+        <composite:attribute name = "passwordValue" />
+
+
+        <composite:attribute name = "emailValue"    />
+        <composite:attribute name = "emailLabel"    />
+        <composite:attribute name = "mobileValue"   />
+        <composite:attribute name = "mobileLabel"   />
+        <composite:attribute name = "dateValue" />
+        <composite:attribute name = "dateLabel" />
+        <composite:attribute name = "sexValue"  />
+        <composite:attribute name = "sexLabel"  />
+        <composite:attribute name = "avatarValue"  />
+        <composite:attribute name = "avatarLabel"  />
+
+
+        <composite:attribute name = "registerButtonLabel" />
+        <composite:attribute name = "registerButtonAction" method-signature="java.lang.String validateRegister()"
+                             />
+    </composite:interface>
+
+    <composite:implementation>
+        <h:form enctype="multipart/form-data">
+
+            <h:panelGrid columns = "2" id = "loginPanel">
+                #{cc.attrs.usernameLabel} : 
+                <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" >
+                    <f:validateLength minimum="5" maximum="25" />
+                </h:inputText>
+
+                #{cc.attrs.passwordLabel} : 
+                <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" >
+                    <f:validateLength minimum="5" maximum="25"/>
+                </h:inputSecret>
+
+                #{cc.attrs.emailLabel} :
+                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true" label="#{cc.attrs.emailLabel}">
+                    <f:validateLength minimum="5" maximum="45"/>
+                </h:inputText>
+
+                #{cc.attrs.mobileLabel} :
+                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}" 
+                                onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                    <f:validateLength minimum="7" maximum="11"/>
+                    
+                </h:inputText>
+
+                #{cc.attrs.dateLabel} :
+                <!--
+                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="RRRR-MM-DD"><f:convertDateTime pattern="yyyy-MM-dd"/> </h:inputText>
+                -->
+
+                <input type="date" value="#{cc.attrs.dateValue}" />
+
+
+                #{cc.attrs.sexLabel} :
+                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}">
+                    <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />
+                    <f:selectItem itemValue="K" itemLabel="Kobieta"   />
+                </h:selectOneMenu>
+
+                #{cc.attrs.avatarLabel}
+                <h:inputFile    id="avatar"     value="#{cc.attrs.avatarValue}"   label="#{cc.attrs.avatarLabel}"/>
+
+            </h:panelGrid>
+
+            <h:commandButton 
+                action = "#{cc.attrs.registerButtonAction}" 
+                value = "#{cc.attrs.registerButtonLabel}"
+                style="padding: 10px"
+                />
+        </h:form>
+    </composite:implementation>
+</html>
