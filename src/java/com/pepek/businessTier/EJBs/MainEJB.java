@@ -8,8 +8,8 @@ package com.pepek.businessTier.EJBs;
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
 
-//import com.pepek.integrationTier.facades.FlatstableFacade;
-//import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.integrationTier.facades.FlatstableFacade;
+import com.pepek.integrationTier.facades.UsersFacade;
 import com.pepek.misc.Utilieties;
 import java.io.File;
 import java.io.IOException;
@@ -75,7 +75,6 @@ public class MainEJB {
         String salt = CreateNewSalt();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encryptedPassword = digest.digest(password.concat(salt).getBytes());
-
         usersFacade.create(new Users(usersFacade.count() + 1, user, Arrays.toString(encryptedPassword), adres, email, telefon, plec.name(),
                 date, (Serializable) awatar, CreateNewSalt()));
 
@@ -139,4 +138,5 @@ public class MainEJB {
             }
         }
         return flatsInfo;
+    }
 }
