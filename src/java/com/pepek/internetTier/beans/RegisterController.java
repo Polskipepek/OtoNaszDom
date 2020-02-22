@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.businessTier.beans;
+package com.pepek.internetTier.beans;
 
 import com.pepek.businessTier.EJBs.MainEJB;
 import com.pepek.misc.Utilieties.Sex;

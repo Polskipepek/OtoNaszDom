@@ -4,7 +4,7 @@
   <context-root>/</context-root>
   <resource-ref>
     <res-ref-name>USERS</res-ref-name>
-    <jndi-name>java:app/idbc/OtoNazsDom</jndi-name>
+    <jndi-name>java:app/jdbc/OtoNaszDom</jndi-name>
   </resource-ref>
   <class-loader delegate="true"/>
   <jsp-config>

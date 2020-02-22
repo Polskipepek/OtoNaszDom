@@ -20,12 +20,12 @@
 
                 <komponentyZlozone:Logowanie 
                     usernameLabel="#{bundle['logowanie.pseudonim']}"
-                    usernameValue="#{loginController.usernameLogin}"
+                    usernameValue="#{loginController.user}"
                     passwordLabel="#{bundle['logowanie.haslo']}"
-                    passwordValue="#{loginController.passwordLogin}"
+                    passwordValue="#{loginController.pwd}"
 
                     loginButtonLabel="#{bundle['logowanie.zaloguj']}"
-                    loginButtonAction="#{loginController.loginAuthentication()}" 
+                    loginButtonAction="#{loginController.validateUsernamePassword()}" 
 
                     />
 

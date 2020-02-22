@@ -125,7 +125,7 @@ public class MainEJB {
         } else if (owner != null) {
             if (query.length() > 0) {
                 for (Flatstable flat : flatsRoot) {
-                    if (Objects.equals(owner.getId(), flat.getId()) && (flat.getName().contains(query) || flat.getDescription().contains(query))) {
+                    if (flat.compareWithQuery(query, owner)) {
                         flatsInfo.add(flat);
                     }
                 }

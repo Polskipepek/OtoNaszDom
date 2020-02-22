@@ -6,6 +6,7 @@
 package com.pepek.integrationTier.enitities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -139,4 +140,8 @@ public class Flatstable implements Serializable {
         return "enitities.Flatstable[ id=" + id + " ]";
     }
 
+    public boolean compareWithQuery(String query, Users owner) {
+        return Objects.equals(owner.getId(), this.getId())
+                && (this.getName().contains(query) || this.getDescription().contains(query));
+    }
 }

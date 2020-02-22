@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:derby://localhost:1527/OtoNaszDom"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="java:app/idbc/OtoNazsDom" object-type="user" pool-name="derby_net_OtoNaszDom_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/OtoNaszDom" object-type="user" pool-name="derby_net_OtoNaszDom_rootPool"/>
 </resources>

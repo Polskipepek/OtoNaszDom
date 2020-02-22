@@ -26,7 +26,7 @@
                     sexLabel="#{bundle['rejestracja.plec']}"
                     avatarLabel="#{bundle['rejestracja.awatar']}"
 
-                    usernameValue="#{registerController.username}"
+                    usernameValue="#{registerController.user}"
                     passwordValue="#{registerController.haslo}"
                     emailValue="#{registerController.email}"
                     mobileValue="#{registerController.telefon}"
@@ -35,7 +35,7 @@
                     avatarValue="#{registerController.awatar}"
 
                     registerButtonLabel="#{bundle['rejestracja.zarejestruj']}"
-                    registerButtonAction="#{registerController.registerValidation()}"
+                    registerButtonAction="#{registerController.validateRegister()}"
 
                     />
 
