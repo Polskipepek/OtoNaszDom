@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <h:head>
+        <title>TODO supply a title</title>
+        <link rel="stylesheet" href="resources/css/browserStyle.css"/>
+    </h:head>
+    <h:body>
+        <h:form  enctype="multipart/form-data">
+            <h:commandButton class="openPopupButton" value="#{bundle['browser.otworzPopupDodaj']}">
+                <f:ajax render="@form" listener="#{browserController.showPopupAddFlat()}" />
+            </h:commandButton>
+
+            <div class="popup-panel-overlay" >
+                <center>
+                    <h:panelGrid columns="2" id="addFlatPanel" rendered="#{browserController.showPopup}">
+
+                        #{ bundle['mieszkanie.nazwa']}
+                        <h:inputText id = "username" value = "#{browserController.name}"    required="true" label="#{bundle['mieszkanie.nazwa']}" />
+
+                        #{bundle['mieszkanie.opis']} : 
+                        <h:inputSecret id = "password" value = "#{browserController.desc}"  required="true" label="#{bundle['mieszkanie.opis']}" />
+
+                        #{bundle['mieszkanie.cena']} :
+                        <h:inputText    id="email"      value="#{browserController.price}" required="true" label="#{bundle['mieszkanie.cena']}"/>
+
+
+                        #{bundle['mieszkanie.data']} :
+                        <h:inputText    id="date"       value="#{browserController.data}" required="true" label="#{bundle['mieszkanie.data']}">
+                            <f:convertDateTime pattern="yyyy-MM-dd"/> 
+                        </h:inputText>
+
+                        #{bundle['mieszkanie.obraz']}
+                        <h:inputFile    id="avatar"     value="#{browserController.imgs}"   label="#{bundle['mieszkanie.obraz']}"/>
+
+                    </h:panelGrid>
+                    <h:commandButton 
+                        value="#{bundle['mieszkanie.anuluj']}"
+                        rendered="#{browserController.showPopup}">
+                        <f:ajax render="addFlatPanel"
+                                listener="#{browserController.hidePopupAddFlat()}"
+                                />
+                    </h:commandButton>
+                    <h:commandButton 
+                        value = "#{bundle['mieszkanie.dodajMieszkanie']}"
+                        rendered="#{browserController.showPopup}"
+
+                        style="padding: 10px"
+                        >
+                        <f:ajax render="addFlatPanel"
+                                listener= "#{browserController.showPopupAddFlat()}" 
+                                />
+
+                    </h:commandButton>
+
+                </center>
+            </div>
+
+        </h:form>
+
+    </h:body>
+</html>
