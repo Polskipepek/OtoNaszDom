@@ -64,7 +64,7 @@ public class Users implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "PASSWORD")
     private String password;
-    @Size(min = 1, max = 32)
+    @Size(min = 1, max = 64)
     @Column(name = "SALT")
     private String salt;
     @Size(max = 100)
@@ -93,6 +93,9 @@ public class Users implements Serializable {
     @OneToMany(mappedBy = "user")
     List<Flatstable> userflats;
 
+    public Users() {
+    }
+
     public List<Flatstable> getUserflats() {
         return userflats;
     }
@@ -105,16 +108,16 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-    public Users(Integer id, String username, String password, String address, String email, Integer number, String sex, Date date, Serializable avatar, String salt) {
+    public Users(Integer id, String username, String password, String email, Integer number, String sex, Date date, String salt) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.address = address;
+        //this.address = address;
         this.email = email;
         this.number = number;
         this.sex = sex;
         this.date = date;
-        this.avatar = avatar;
+        //this.avatar = avatar;
         this.salt = salt;
     }
 

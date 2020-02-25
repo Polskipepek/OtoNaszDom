@@ -5,10 +5,10 @@
  */
 package com.pepek.internetTier.beans;
 
-
-import com.pepek.businessTier.EJBs.MainEJB;
+import com.pepek.integrationTier.facades.UsersFacade;
 import com.pepek.misc.SessionUtils;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,6 +21,9 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @SessionScoped
 public class LoginController implements Serializable {
+
+    @EJB
+    private UsersFacade usersFacade;
 
     private static final long serialVersionUID = 1094801825228386363L;
 
@@ -43,28 +46,35 @@ public class LoginController implements Serializable {
         this.user = user;
     }
 
-    MainEJB mainEJB;
-
     //validate login
     public String validateUsernamePassword() {
 
-        boolean valid = false;
-        valid = mainEJB.LoginAuthentication(user, pwd);
-        if (valid) {
+        String valid = "";
+        valid = usersFacade.LoginAuthentication(user, pwd);
+        if (valid.contains("true")) {
             //Używamy sesji, aby przy wylogoweaniu zakończyć / unieważnić sesje, 
             //w celu uniemożliwienia w przypadku powrotu do poprzedniej strony modyfikacji danych i obsługi zdarzeń
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
-            
+
             return "/home";
+            
+        } else if (valid.contains("notExist")) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Użytkownik nie istnieje",
+                            "proszę wpisać poprawne dane logowania lub stworzyć nowego użytkownika"));
+
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Nieprawidłowe dane logowania",
                             "proszę wpisać poprawne dane logowania"));
-            return "";
+            
         }
+        return "";
     }
 
     //logout event, invalidate session
@@ -74,9 +84,16 @@ public class LoginController implements Serializable {
         return "index";
     }
 
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
+    }
+
 }
 /*
-
     public String GoogleLoggedIn(String accessToken) {
         int a = 5;
         a++;
@@ -92,4 +109,4 @@ public class LoginController implements Serializable {
         return requestFactory.buildGetRequest(url).execute();
     }
 
-*/
+ */
