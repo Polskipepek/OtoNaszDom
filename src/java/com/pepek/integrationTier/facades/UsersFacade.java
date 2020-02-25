@@ -53,14 +53,22 @@ public class UsersFacade extends AbstractFacade<Users> {
             return "notExist";
         }
         String salt = user.getSalt();
-        String concatedPassword = password.concat(salt);
-        byte[] hashed = HashSha256(concatedPassword);
-
+        byte[] hashed = HashSha256(password.concat(salt));
         String encryptedPassword = bytesToString(hashed);
 
-        System.out.println("haslo:" + password + ", salt:" + salt + ", sha: " + encryptedPassword+" == " + user.getPassword());
+        System.out.println("haslo:" + password + ", salt:" + salt + ", sha: " + encryptedPassword + " == " + user.getPassword());
 
         return encryptedPassword.equals(user.getPassword()) == true ? "true" : "false";
+    }
+
+    public void AddUserToDB(String username, String password, String email, int telefon, Date date, Utilieties.Sex plec) {
+        String salt = GenerateNewSalt();
+        byte[] b_encryptedPassword = HashSha256(password.concat(salt));
+        String s_encryptedPassword = bytesToString(b_encryptedPassword);
+        
+        Users user = new Users(count() + 1, username, s_encryptedPassword, email, telefon, plec.name(), date, salt);
+        create(user);
+
     }
 
     protected byte[] HashSha256(String string) {
@@ -70,9 +78,7 @@ public class UsersFacade extends AbstractFacade<Users> {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(UsersFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return digest.digest(string.getBytes());
-
     }
 
     protected String bytesToString(byte[] bytes) {
@@ -88,21 +94,6 @@ public class UsersFacade extends AbstractFacade<Users> {
         String salt = bytesToString(bytes);
         System.out.println("randomSalt: " + salt);
         return salt;
-    }
-
-    public void AddUserToDB(String username, String password, String email, int telefon, Date date, Utilieties.Sex plec) {
-        String salt = GenerateNewSalt();
-        MessageDigest digest = null;
-        try {
-            digest = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(UsersFacade.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        byte[] bencryptedPassword = digest.digest(password.concat(salt).getBytes());
-        String sencryptedPassword = bytesToString(bencryptedPassword);
-        Users user = new Users(count() + 1, username, sencryptedPassword, email, telefon, plec.name(), date, salt);
-        create(user);
-
     }
 
     public UsersFacade() {
