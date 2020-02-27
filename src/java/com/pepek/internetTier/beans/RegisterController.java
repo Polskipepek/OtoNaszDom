@@ -9,9 +9,7 @@ import com.pepek.integrationTier.facades.UsersFacade;
 import com.pepek.misc.Utilieties.Sex;
 import java.io.File;
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
-import java.sql.SQLException;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -24,11 +22,10 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class RegisterController implements Serializable {
-   
+
     @EJB
     private UsersFacade usersFacade;
 
-    
     private static final long serialVersionUID = 1094838637898L;
 
     private String user;
@@ -40,21 +37,19 @@ public class RegisterController implements Serializable {
     private File awatar;
     private Date data;
 
- 
     //validate
     public String validateRegister() {
-        boolean valid = true;
-        usersFacade.AddUserToDB(user, haslo, email, telefon, data, plec);
+        String valid = usersFacade.AddUserToDB(user, haslo, email, telefon, data, plec);
 
-        if (valid) {
+        if (valid.equals("true")) {
             return "userLogin";
 
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Nieprawidłowe dane rejestracji",
-                            "proszę wpisać poprawne dane logowania"));
+                            "Nieprawidłowe dane rejestracji. Problem: " + valid + "",
+                            "proszę wpisać poprawne dane logowania "));
             return "";
         }
     }

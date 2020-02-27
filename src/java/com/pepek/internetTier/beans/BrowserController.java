@@ -5,9 +5,13 @@
  */
 package com.pepek.internetTier.beans;
 
+import com.pepek.integrationTier.enitities.Flatstable;
+import com.pepek.integrationTier.facades.FlatstableFacade;
 import java.awt.Image;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -24,9 +28,13 @@ public class BrowserController {
     private float price;
     private Image[] imgs;
     private Date data;
-
+    private String searchString = "";
     private boolean showPopup;
 
+    @EJB
+    FlatstableFacade flatstableFacade;
+    
+    
     public void showPopupAddFlat() {
         showPopup = !showPopup;
         if (showPopup == false) {
@@ -43,8 +51,6 @@ public class BrowserController {
 
         showPopup = false;
     }
-
-    private String searchString = "";
 
     public String getSearchString() {
         return searchString;
@@ -98,8 +104,10 @@ public class BrowserController {
         return data;
     }
 
-    public void setData() {
-        data = new Date(LocalDateTime.now().getSecond());
+    public void setData(Date date) {
+        data = date == null ? new Date(LocalDateTime.now().getSecond()) : date;
     }
 
+
+    
 }

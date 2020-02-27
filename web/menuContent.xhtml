@@ -4,44 +4,58 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <link rel="stylesheet" href="resources/css/menuContent.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap" rel="stylesheet"/>
+
     </h:head>
     <h:body>
 
-        <nav class="site-nav">
-            <button class="side-menu-trigger">Menu</button>
-            <aside class="side-menu">
-                <ul>
-                    <li>
-                        <a href="profile.xhtml">
-                            Profil
-                        </a>
-                    </li>
-                    <li>
-                        <a href="browser.xhtml">
-                            Szukaj
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            Pracujemy nad tym
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+        <div class="wrapper">
 
-                        </a>
-                    </li>
-                    <li>
-                        <h:commandLink action="#{loginController.logout()}" value="#{bundle['home.wyloguj']}"></h:commandLink>
-                    </li>
+            <div class="header">
+                <div class="logo">
+                    <img src="resources/images/google-home-logo.png" class="logoImage"></img>
+                    <span style="color: #c34f4f">Oto</span><span style="color: #2ECC40">Nasz</span><span style="color: #0074D9">Dom</span>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="nav">
+                    <ol>
+                        <li><a href="http://localhost:8080/faces/browse.xhtml"/><a>#{bundle['nav.szukaj']}</a></li>                        
+                        <li><a href=""/><a>#{bundle['nav.dodaj']}</a></li>                        
+                        <li><a href="http://localhost:8080/faces/profile.xhtml"/><a>#{bundle['nav.profil']}</a></li>                        
+                        <li><h:commandLink action="#{loginController.logout()}" value="#{bundle['home.wyloguj']}"></h:commandLink></li>                        
 
-                </ul>
-
-            </aside>
+                    </ol>
+                </div>
+                <div class="content">
 
 
-        </nav>
+                </div>
 
+            </div>
+        </div>
+
+        <script src="jquery-3.4.1.min.js"/>
+        <script>
+            $(document).ready(function () {
+                var NavY = $('.nav').offset().top;
+
+                var stickyNav = function () {
+                    var ScrollY = $(window).scrollTop();
+
+                    if (ScrollY > NavY) {
+                        $('.nav').addClass('sticky');
+                    } else {
+                        $('.nav').removeClass('sticky');
+                    }
+                };
+
+                stickyNav();
+
+                $(window).scroll(function () {
+                    stickyNav();
+                });
+            });
+
+        </script>
     </h:body>
 </html>
-

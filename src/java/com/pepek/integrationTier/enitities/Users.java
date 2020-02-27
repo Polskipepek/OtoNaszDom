@@ -61,7 +61,7 @@ public class Users implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
+    @Size(min = 1, max = 128)
     @Column(name = "PASSWORD")
     private String password;
     @Size(min = 1, max = 64)

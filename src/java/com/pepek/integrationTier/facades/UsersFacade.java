@@ -16,6 +16,7 @@ import java.util.Base64.Encoder;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,6 +34,11 @@ public class UsersFacade extends AbstractFacade<Users> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+
+    @PreDestroy
+    public void destruct() {
+        em.close();
     }
 
     Users GetUser(String username) {
@@ -61,14 +67,28 @@ public class UsersFacade extends AbstractFacade<Users> {
         return encryptedPassword.equals(user.getPassword()) == true ? "true" : "false";
     }
 
-    public void AddUserToDB(String username, String password, String email, int telefon, Date date, Utilieties.Sex plec) {
+    public String AddUserToDB(String username, String password, String email, int telefon, Date date, Utilieties.Sex plec) {
+
+        for (Users user : findAll()) {
+            if (user.getUsername().equals(username)) {
+                return "UserExist";
+            }
+            if (user.getNumber().equals(telefon)) {
+                return "NumberExist";
+            }
+        }
+
+        if (!email.contains("@")) {
+            return "@inMail";
+        }
+
         String salt = GenerateNewSalt();
         byte[] b_encryptedPassword = HashSha256(password.concat(salt));
         String s_encryptedPassword = bytesToString(b_encryptedPassword);
-        
+
         Users user = new Users(count() + 1, username, s_encryptedPassword, email, telefon, plec.name(), date, salt);
         create(user);
-
+        return "true";
     }
 
     protected byte[] HashSha256(String string) {
