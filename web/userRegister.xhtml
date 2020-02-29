@@ -6,16 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone">
     <h:head>
-        <link rel="stylesheet" href="resources/css/registerStyle.css"/>
+        <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="resources/css/fieldsStyle.css" type="text/css"/>
 
-        <title>Rejestracja</title>
+        <title>#{bundle['rejestracja.tytul']}</title>
 
     </h:head>
     <h:body>
 
         <center>
-            <h:form class="centered Form" enctype="multipart/form-data">
-                <h3 style="font-size: 50px">Oto Nasz Dom</h3>
+            <h:form class="centeredForm" enctype="multipart/form-data">
+
+                <div id="siteHeader">
+                    <img src="resources/images/google-home-logo.png" class="logoImage"></img>
+                    <span style="color: #c34f4f">Oto</span><span style="color: #2ECC40">Nasz</span><span style="color: #0074D9">Dom</span>
+                </div>
+                <h:messages class="messages"  ></h:messages>
 
                 <komponentyZlozone:Rejestracja
                     usernameLabel="#{bundle['rejestracja.pseudonim']}"
@@ -24,7 +30,7 @@
                     mobileLabel="#{bundle['rejestracja.komora']}"
                     dateLabel="#{bundle['rejestracja.data']}"
                     sexLabel="#{bundle['rejestracja.plec']}"
-                    avatarLabel="#{bundle['rejestracja.awatar']}"
+
 
                     usernameValue="#{registerController.user}"
                     passwordValue="#{registerController.haslo}"
@@ -32,7 +38,7 @@
                     mobileValue="#{registerController.telefon}"
                     dateValue="#{registerController.data}"
                     sexValue="#{registerController.plec}"
-                    avatarValue="#{registerController.awatar}"
+
 
                     registerButtonLabel="#{bundle['rejestracja.zarejestruj']}"
                     registerButtonAction="#{registerController.validateRegister()}"
@@ -43,6 +49,7 @@
                 <h:button value="#{viewerHelper.helper =='userLogin.xhtml' ? 'Rejestracja' : 'Logowanie'}" outcome="userLogin" style="font-size: 25px; box-shadow: gray; padding: 5px;">
                     <f:ajax  execute="toogle" render="toogleRender" event="click"/>
                 </h:button>
+
             </h:form>
         </center>
         <div class="credits">&copy;Michał Stasinkiewicz</div>

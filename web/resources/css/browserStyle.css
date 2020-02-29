@@ -52,6 +52,7 @@ form.example::after {
     margin: auto;
 }
 .popup-panel{
+    inline-size: max-content;
     margin: auto;
     background-color: grey;
     padding: 20px;

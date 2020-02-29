@@ -13,8 +13,8 @@
         <h:form>
             <ui:include src="menuContent.xhtml"/>
 
-            <h1>#{bundle['home.witaj']} #{loginController.getUser()}!</h1>
-
+            <h1 id="welcomeTitle"> <span style="color: #c34f4f">#{bundle['home.witaj']}</span> #{loginController.getUser()}!</h1>
+            <ui:include src="showAll.xhtml"/>
 
         </h:form>
     </h:body>

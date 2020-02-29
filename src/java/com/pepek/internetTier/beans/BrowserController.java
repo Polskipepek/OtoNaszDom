@@ -1,19 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pepek.internetTier.beans;
 
 import com.pepek.integrationTier.enitities.Flatstable;
+import com.pepek.integrationTier.enitities.Users;
 import com.pepek.integrationTier.facades.FlatstableFacade;
-import java.awt.Image;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -26,15 +24,24 @@ public class BrowserController {
     private String name;
     private String desc;
     private float price;
-    private Image[] imgs;
+    private Part[] files;
     private Date data;
-    private String searchString = "";
+    private String searchString;
     private boolean showPopup;
-
+    private Users owner;
+    private float size;
+    private List<String> l_imagesPaths;
+    private List<Flatstable> allFlats;
     @EJB
-    FlatstableFacade flatstableFacade;
-    
-    
+    private FlatstableFacade flatstableFacade;
+    private List<Flatstable> FlatsByString;
+
+    public Flatstable AddFlat() {
+        List<String> imagesPath = flatstableFacade.upload(files);
+        return flatstableFacade.AddNewFlatToDB(owner, name, desc, price, imagesPath, size);
+
+    }
+
     public void showPopupAddFlat() {
         showPopup = !showPopup;
         if (showPopup == false) {
@@ -46,7 +53,7 @@ public class BrowserController {
         name = "";
         desc = "";
         price = -1;
-        imgs = null;
+        files = null;
         data = null;
 
         showPopup = false;
@@ -92,14 +99,6 @@ public class BrowserController {
         this.price = price;
     }
 
-    public Image[] getImgs() {
-        return imgs;
-    }
-
-    public void setImgs(Image[] imgs) {
-        this.imgs = imgs;
-    }
-
     public Date getData() {
         return data;
     }
@@ -108,6 +107,64 @@ public class BrowserController {
         data = date == null ? new Date(LocalDateTime.now().getSecond()) : date;
     }
 
+    public Users getOwner() {
+        return owner;
+    }
 
-    
+    public void setOwner(Users owner) {
+        this.owner = owner;
+    }
+
+    public FlatstableFacade getFlatstableFacade() {
+        return flatstableFacade;
+    }
+
+    public void setFlatstableFacade(FlatstableFacade flatstableFacade) {
+        this.flatstableFacade = flatstableFacade;
+    }
+
+    public Part[] getFiles() {
+        return files;
+    }
+
+    public void setFiles(Part[] files) {
+        this.files = files;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public List<String> getL_imagesPaths(Flatstable flat) {
+        List<String> temp = new ArrayList<>();
+        String[] sTemp = flat.getS_imagesPaths().split("\n");
+        temp.addAll(Arrays.asList(sTemp));
+
+        l_imagesPaths = temp;
+        return l_imagesPaths;
+    }
+
+    public void setL_imagesPaths(List<String> l_imagesPaths) {
+        this.l_imagesPaths = l_imagesPaths;
+    }
+
+    public List<Flatstable> getAllFlats() {
+        return flatstableFacade.GetAllFlats();
+    }
+
+    public void setAllFlats(List<Flatstable> allFlats) {
+        this.allFlats = allFlats;
+    }
+
+    public List<Flatstable> getFlatsByString() {
+        return flatstableFacade.GetFlats(getSearchString(), getOwner());
+    }
+
+    public void setFlatsByString(List<Flatstable> FlatsByString) {
+        this.FlatsByString = FlatsByString;
+    }
 }

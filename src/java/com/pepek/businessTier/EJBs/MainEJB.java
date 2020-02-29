@@ -5,14 +5,10 @@
  */
 package com.pepek.businessTier.EJBs;
 
-
 import com.pepek.integrationTier.facades.FlatstableFacade;
 import com.pepek.integrationTier.facades.UsersFacade;
-import java.io.File;
-import java.io.IOException;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -29,15 +25,4 @@ public class MainEJB {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public static byte[] convertFileContentToBlob(String filePath) throws IOException {
-        byte[] fileContent = null;
-        try {
-            fileContent = FileUtils.readFileToByteArray(new File(filePath));
-        } catch (IOException e) {
-            throw new IOException("Unable to convert file to byte array. "
-                    + e.getMessage());
-        }
-        return fileContent;
-    }
-
 }

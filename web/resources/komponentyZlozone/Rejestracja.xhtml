@@ -5,7 +5,9 @@
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
       xmlns:f = "http://java.sun.com/jsf/core"
+            xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:composite = "http://java.sun.com/jsf/composite">
+    <link target="resources/css/style.css" type="text/css" rel="stylesheet"/>
 
     <composite:interface>
         <composite:attribute name = "usernameLabel" />
@@ -32,39 +34,34 @@
     <composite:implementation>
         <h:form enctype="multipart/form-data">
 
-            <h:panelGrid columns = "2" id = "loginPanel">
-                #{cc.attrs.usernameLabel} : 
-                <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" >
+            <h:panelGrid columns = "1" id = "loginPanel">
+
+                <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" pt:placeholder="#{cc.attrs.usernameLabel}" >
                     <f:validateLength minimum="5" maximum="25" />
                 </h:inputText>
 
-                #{cc.attrs.passwordLabel} : 
-                <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" >
+
+                <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" pt:placeholder="#{cc.attrs.passwordLabel}" >
                     <f:validateLength minimum="5" maximum="25"/>
                 </h:inputSecret>
 
-                #{cc.attrs.emailLabel} :
-                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true" label="#{cc.attrs.emailLabel}">
+                <h:inputText    id="email"      value="#{cc.attrs.emailValue}" required="true" label="#{cc.attrs.emailLabel}" pt:placeholder="#{cc.attrs.emailLabel}">
                     <f:validateLength minimum="5" maximum="45"/>
                 </h:inputText>
 
-                #{cc.attrs.mobileLabel} :
-                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}" 
+                <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}" pt:placeholder="#{cc.attrs.mobileLabel}" 
                                 onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
                     <f:validateLength minimum="7" maximum="11"/>
                     
                 </h:inputText>
 
-                #{cc.attrs.dateLabel} :
                 <!--
                 <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="RRRR-MM-DD"><f:convertDateTime pattern="yyyy-MM-dd"/> </h:inputText>
                 -->
 
                 <input type="date" value="#{cc.attrs.dateValue}" />
 
-
-                #{cc.attrs.sexLabel} :
-                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}">
+                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}" pt:placeholder="#{cc.attrs.sexLabel}">
                     <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />
                     <f:selectItem itemValue="K" itemLabel="Kobieta"   />
                 </h:selectOneMenu>

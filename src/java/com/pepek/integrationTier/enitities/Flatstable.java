@@ -51,15 +51,15 @@ public class Flatstable implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "DESCRIPTION")
     private String description;
-    @Lob
-    @Column(name = "IMAGE")
-    private Serializable image;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "SIZE")
+    private Float size;
     @Column(name = "PRICE")
     private Float price;
+    @Column(name = "IMAGE")
+    private String s_imagesPaths;
 
     @ManyToOne
-    Users user;
+    private Users user;
 
     public Flatstable() {
     }
@@ -68,12 +68,17 @@ public class Flatstable implements Serializable {
         this.id = id;
     }
 
-    public Flatstable(Integer id, String name, String description, Serializable image) {
+    public Flatstable(Integer id, String name, String description, Float size, Float price, String imagesPaths, Users user) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.image = (Serializable) image;
+        this.size = size;
+        this.price = price;
+        this.s_imagesPaths = imagesPaths;
+        this.user = user;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -99,13 +104,7 @@ public class Flatstable implements Serializable {
         this.description = description;
     }
 
-    public Serializable getImage() {
-        return image;
-    }
 
-    public void setImage(Serializable image) {
-        this.image = image;
-    }
 
     public Float getPrice() {
         return price;
@@ -143,5 +142,29 @@ public class Flatstable implements Serializable {
     public boolean compareWithQuery(String query, Users owner) {
         return Objects.equals(owner.getId(), this.getId())
                 && (this.getName().contains(query) || this.getDescription().contains(query));
+    }
+
+    public Float getSize() {
+        return size;
+    }
+
+    public void setSize(Float size) {
+        this.size = size;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public String getS_imagesPaths() {
+        return s_imagesPaths;
+    }
+
+    public void setS_imagesPaths(String s_imagesPaths) {
+        this.s_imagesPaths = s_imagesPaths;
     }
 }

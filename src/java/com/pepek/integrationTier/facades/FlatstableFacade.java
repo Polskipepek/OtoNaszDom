@@ -10,17 +10,19 @@
  */
 package com.pepek.integrationTier.facades;
 
-import static com.pepek.businessTier.EJBs.MainEJB.convertFileContentToBlob;
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -41,14 +43,16 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
         super(Flatstable.class);
     }
 
-    public Flatstable AddNewFlatToDB(Users owner, String name, String description, float price, File fileImage) throws IOException {
-        //byte[] temp = Files.readAllBytes(IOUtils.toByteArray(fileImage.toPath()));
-        byte[] temp = convertFileContentToBlob(fileImage.getPath());
+    public Flatstable AddNewFlatToDB(Users owner, String name, String description, float price, List<String> imagesPath, float size) {
+        String temp = "";
+        for (String s : imagesPath) {
+            temp += s + "\n";
+        }
 
-        Flatstable mieszkanko = new Flatstable(count() + 1, name, description, temp);
+        Flatstable mieszkanko = new Flatstable(count() + 1, name, description, size, price, temp, owner);
         create(mieszkanko);
 
-        return null;
+        return mieszkanko;
     }
 
     public List<Flatstable> GetFlats(String query, Users owner) {
@@ -56,13 +60,9 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
         List<Flatstable> flatsInfo = new ArrayList<>();
 
         if (owner == null) {
-            if (query == null || query.equals("")) {
-                flatsInfo = findAll();
-            } else if (query.length() > 0) {
-                for (Flatstable flat : flatsRoot) {
-                    if (flat.getName().contains(query)) {
-                        flatsInfo.add(flat);
-                    }
+            for (Flatstable flat : flatsRoot) {
+                if (flat.getName().contains(query)) {
+                    flatsInfo.add(flat);
                 }
             }
         } else if (owner != null) {
@@ -72,7 +72,7 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
                         flatsInfo.add(flat);
                     }
                 }
-            } else if (query == null || query.length() < 1) {
+            } else if (query.length() < 1) {
                 for (Flatstable flat : flatsRoot) {
                     if (Objects.equals(owner.getId(), flat.getId())) {
                         flatsInfo.add(flat);
@@ -80,6 +80,37 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
                 }
             }
         }
+        
         return flatsInfo;
+    }
+
+    public List<Flatstable> GetAllFlats() {
+        return findAll();
+    }
+
+    public List<String> upload(Part[] files) {
+        List<String> paths = new ArrayList<>();
+        for (Part file : files) {
+            try {
+                InputStream in = file.getInputStream();
+
+                File f = new File("A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\HOST" + file.getSubmittedFileName());
+                f.createNewFile();
+                FileOutputStream out = new FileOutputStream(f);
+                byte[] buffer = new byte[8192];
+                int length;
+                while ((length = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, length);
+                }
+                paths.add(f.getAbsolutePath());
+                out.close();
+                in.close();
+
+            } catch (Exception e) {
+                e.printStackTrace(System.out);
+            }
+
+        }
+        return paths;
     }
 }

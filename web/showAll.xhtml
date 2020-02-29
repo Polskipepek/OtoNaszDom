@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:c ="http://java.sun.com/jsp/jstl/core"
+
+      >
+
+    <body>
+        <h:form>
+            <c:forEach var="flat" items="#{browserController.allFlats}">
+                <h:outputText value="#{flat.name}"/>
+                <h:outputText value="#{flat.description}"/>
+                <h:outputText value="#{flat.size}"/>
+                <h:outputText value="#{flat.price}"/>
+                <h:outputText value="#{flat.user.username}"/>
+                
+                <c:forEach var="image" items="#{browserController.getL_imagesPaths(flat)}">
+                    <h:graphicImage url=""/>
+                    <h:outputText value="#{image}"/>
+                </c:forEach>
+
+
+            </c:forEach>
+
+        </h:form>
+
+    </body>
+
+</html>

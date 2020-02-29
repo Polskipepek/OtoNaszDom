@@ -5,20 +5,20 @@ body {
     font-family: Tahoma, Geneva, sans-serif;
     font-size: 23px;
     line-height: 1.7em; 
-    background-position: top center;
-    background-color: #291a07;
-    background-image: url(http://localhost:8080/resources/images/tooplate_body.png);
-    background-repeat: no-repeat;
+    background: url(http://localhost:8080/resources/images/white_wall.png);
+    /* This pattern is downloaded from www.subtlepatterns.com */
+
 }
 
-.centered{
-    margin-top: 20vh !important;
-    margin-left: 10vh;    
-    margin-right: 10vh;
+.centeredForm{
+    background-color: white; 
+    margin-top: 10vh !important;
+
     inline-size: max-content !important;
     width: auto;
     box-sizing: border-box;
-    border:  5px solid beige;
+    border:  5px solid #EEE;
+    border-radius: 10px;
     padding: 20px;
     color: white;
 }
@@ -40,29 +40,37 @@ a, a:link, a:visited {
     height: 43px;
 
 }
-
-
-button{
-    font-size: 35px !important;
-    color: red;
-    padding: 100px;
-    box-sizing: 5px;
-    box-shadow: gray;
+#siteHeader{
+    font-size: 50px;
+    width: 320px;
+    margin-bottom: 50px;
 }
+
+#siteTitle{
+    font-size: 50px;
+}
+
+
+ul{
+    top: 1vh;
+    left: 1vh;
+}
+
+.logoImage{
+    width: 25%;
+
+} 
 
 .credits{
     position: absolute;
     right: 1vh;
     bottom: 0;
-    text-align: center;
+    text-align: right;
 
 }
 
-#messages{
-    top: 5vh;
-    margin: auto;
+.messages{
+    color: #c34f4f;
+    list-style: none;
 }
 
-.Form{
-    background: gray;
-}

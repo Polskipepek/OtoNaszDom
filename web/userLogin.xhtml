@@ -6,17 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone">
     <h:head>
-        <link rel="stylesheet" href="resources/css/style.css"/>
+        <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="resources/css/fieldsStyle.css" type="text/css"/>
 
-        <title>Logowanie</title>
+        <title>#{bundle['logowanie.tytul']}</title>
         <meta name="google-signin-client-id" content="548841655727-97oeq242e73qqjk7i994bqtdj0021s1t.apps.googleusercontent.com"/>
 
     </h:head>
     <h:body>
 
         <center>
-            <h:form class="centered Form">
-                <h3 style="font-size: 50px">Oto Nasz Dom</h3>
+            <h:form class="centeredForm">
+                <div id="siteHeader">
+                    <img src="resources/images/google-home-logo.png" class="logoImage"></img>
+                    <span style="color: #c34f4f">Oto</span><span style="color: #2ECC40">Nasz</span><span style="color: #0074D9">Dom</span>
+                </div>
+                <h:messages class="messages"  ></h:messages>
 
                 <komponentyZlozone:Logowanie 
                     usernameLabel="#{bundle['logowanie.pseudonim']}"
@@ -30,7 +35,7 @@
                     />
 
                 <br/><br/>
-                <h:button value="Rejestracja" outcome="userRegister" style="font-size: 25px; box-shadow: gray; padding: 5px;">
+                <h:button value="Rejestracja" outcome="userRegister" style="font-size: 30px; box-shadow: gray; padding: 5px;">
                     <f:ajax  execute="toogle" render="toogleRender" event="click"/>
                 </h:button>
             </h:form>

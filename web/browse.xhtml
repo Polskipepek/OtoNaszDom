@@ -17,9 +17,9 @@
             <h:form enctype="multipart/form-data">
                 <ui:include src="menuContent.xhtml"/>
                 <center>
-                    <h:inputText class="search"  value="#{browserController.searchString}"></h:inputText>
+                    <h:inputText class="searchTxt"  value="#{browserController.searchString}"></h:inputText>
 
-                    <h:commandButton value="#{bundle['browser.szukaj']}" action="#{browserController.GetFlatsByString(browserController.searchString)}" >
+                    <h:commandButton class="searchBtn" value="#{bundle['browser.szukaj']}" action="#{browserController.GetFlatsByString()}" >
                         <f:ajax execute="search" render="output"></f:ajax>
                     </h:commandButton>
                     <br/>
@@ -28,47 +28,7 @@
                     <h:commandButton class="openPopupButton" value="#{bundle['browser.otworzPopupDodaj']}">
                         <f:ajax render="@form" listener="#{browserController.showPopupAddFlat()}" />
                     </h:commandButton>
-                    <div>
-                        <h:dataTable value="#{browserController.searchString == '' ? browserController.GetAllFlats() 
-                                              : browserController.GetFlatsByString(browserController.searchString) }"
-                                     var="b"
-                                     styleClass="browserStyle"
-                                     headerClass="browserStyleHeader"
-                                     rowClasses="browserStyleOddRow, browserStyleEvenRow" >
 
-                            <h:column>
-                                <f:facet name="header">
-                                    #{bundle['browser.flatId']}
-                                </f:facet>
-                                #{b.id}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    #{bundle['browser.flatName']}
-                                </f:facet>
-                                #{b.name}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    #{bundle['browser.flatDesc']}
-                                </f:facet>
-                                #{b.descriprion}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    #{bundle['browser.flatPrice']}
-                                </f:facet>
-                                #{b.price}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    #{bundle['browser.flatDate']}
-                                </f:facet>
-                                #{b.postDate}
-                            </h:column>
-
-                        </h:dataTable>
-                    </div>
                     <h:form class="popup-panel-overlay" enctype="multipart/form-data" rendered="#{browserController.showPopup}">
                         <center class="popup-panel">
                             <komponentyZlozone:DodawanieMieszkania
@@ -78,7 +38,7 @@
 
                                 descriptionLabel="#{bundle['mieszkanie.opis']}"
                                 descriptionValue="#{browserController.desc}"
-                                
+
                                 priceLabel="#{bundle['mieszkanie.cena']}"
                                 priceValue="#{browserController.price}"
 
@@ -86,7 +46,7 @@
                                 dateValue="#{browserController.data}"
 
                                 imagesLabel="#{bundle['mieszkanie.obraz']}"
-                                imagesValue="#{browserController.imgs}"
+                                imagesValue="#{browserController.files}"
 
                                 addFlatButtonLabel="#{bundle['mieszkanie.dodajMieszkanie']}"
                                 addFlatButtonAction="#{browserController.AddFlat()}"

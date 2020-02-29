@@ -5,9 +5,10 @@
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
       xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:composite = "http://java.sun.com/jsf/composite"
       >
-
+    <link target="resources/css/style.css" type="text/css" rel="stylesheet"/>
     <composite:interface>
         <composite:attribute name = "nameLabel" />
         <composite:attribute name = "nameValue" />
@@ -30,32 +31,18 @@
     </composite:interface>
 
     <composite:implementation>
-        <h:form id="Event" enctype="multipart/form-data" >
+        <h:form class="centeredForm" enctype="multipart/form-data" >
 
-            <h:panelGrid columns="2" id="addFlatPanel">
+            <h:panelGrid columns="1" id="addFlatPanel">
 
-                #{cc.attrs.nameLabel} : 
-                <h:inputText id = "username" value = "#{cc.attrs.nameValue}"    required="true" label="#{cc.attrs.nameLabel}" />
-
-                #{cc.attrs.descriptionLabel} : 
-                <h:inputText id = "password" value = "#{cc.attrs.descriptionValue}"  required="true" label="#{cc.attrs.descriptionLabel}" />
-
-                #{cc.attrs.priceLabel} :
-                <h:inputText    id="email"      value="#{cc.attrs.priceValue}" required="true" label="#{cc.attrs.priceLabel}"/>
-
-
-                #{cc.attrs.dateLabel} :
-                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="#{cc.attrs.dateLabel}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"/> 
-                </h:inputText>
-
-                #{cc.attrs.imagesLabel}
-                <h:inputFile    id="avatar"     value="#{cc.attrs.imagesValue}"   label="#{cc.attrs.imagesLabel}"/>
+                <h:inputText    id = "username" value="#{cc.attrs.nameValue}"           required="true" label="#{cc.attrs.nameLabel}"           pt:placeholder="#{cc.attrs.nameLabel}" />
+                <h:inputText    id = "password" value="#{cc.attrs.descriptionValue}"    required="true" label="#{cc.attrs.descriptionLabel}"    pt:placeholder="#{cc.attrs.descriptionLabel}"/>
+                <h:inputText    id="email"      value="#{cc.attrs.priceValue}"          required="true" label="#{cc.attrs.priceLabel}"          pt:placeholder="#{cc.attrs.priceLabel}"/>
+                <h:inputFile    id="avatar"     value="#{cc.attrs.imagesValue}"   label="#{cc.attrs.imagesLabel}"   pt:multiple="true" />
 
                 <h:commandButton 
                     action = "#{cc.attrs.addFlatButtonAction}" 
                     value = "#{cc.attrs.addFlatButtonLabel}"
-                    style="padding: 10px"
                     />
 
             </h:panelGrid>

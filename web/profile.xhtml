@@ -12,9 +12,8 @@
             <ui:include src="menuContent.xhtml"/>
 
         </h:form>
-
-        <h1>#{bundle['profil.nazwa']} </h1>
-        <h2>#{loginController.user}</h2>
+        
+        <h2>#{bundle['profil.nazwa']}: #{loginController.user}</h2>
         
         <h:dataTable value="#{profileController.FetchUserInfo(profileController.user)}"
                      var="p" >
