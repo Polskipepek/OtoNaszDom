@@ -3,6 +3,7 @@ package com.pepek.internetTier.beans;
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
 import com.pepek.integrationTier.facades.FlatstableFacade;
+import com.pepek.integrationTier.facades.UsersFacade;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
 /**
@@ -34,11 +36,14 @@ public class BrowserController {
     private List<Flatstable> allFlats;
     @EJB
     private FlatstableFacade flatstableFacade;
+    @EJB
+    private UsersFacade usersFacade;
     private List<Flatstable> FlatsByString;
 
-    public Flatstable AddFlat() {
-        List<String> imagesPath = flatstableFacade.upload(files);
-        return flatstableFacade.AddNewFlatToDB(owner, name, desc, price, imagesPath, size);
+    public Flatstable addFlat() {
+        //List<String> imagesPath = flatstableFacade.upload(files);
+        getOwner();
+        return flatstableFacade.AddNewFlatToDB(owner, name, desc, price, null, size);
 
     }
 
@@ -108,6 +113,8 @@ public class BrowserController {
     }
 
     public Users getOwner() {
+        String s = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        
         return owner;
     }
 
@@ -166,5 +173,13 @@ public class BrowserController {
 
     public void setFlatsByString(List<Flatstable> FlatsByString) {
         this.FlatsByString = FlatsByString;
+    }
+
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
     }
 }

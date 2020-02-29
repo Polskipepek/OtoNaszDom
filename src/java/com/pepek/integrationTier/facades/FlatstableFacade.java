@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.Part;
@@ -45,8 +46,11 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
 
     public Flatstable AddNewFlatToDB(Users owner, String name, String description, float price, List<String> imagesPath, float size) {
         String temp = "";
-        for (String s : imagesPath) {
-            temp += s + "\n";
+
+        if (imagesPath != null && imagesPath.size() > 0) {
+            for (String s : imagesPath) {
+                temp += s + "\n";
+            }
         }
 
         Flatstable mieszkanko = new Flatstable(count() + 1, name, description, size, price, temp, owner);
@@ -80,7 +84,7 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
                 }
             }
         }
-        
+
         return flatsInfo;
     }
 

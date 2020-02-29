@@ -1,6 +1,40 @@
+body{
+    overflow:auto;
+}
 
-input[type=text], input[type=password], select{
-    width: 300px;
+#centeredForm{ 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white; 
+    margin-top: 10vh !important;
+    inline-size: max-content !important;
+    width: auto;
+    box-sizing: border-box;
+    border:  5px solid #EEE;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}
+
+
+textarea[placeholder="Opis"]{
+    width: 475px;
+    height: 400%;
+    border: 2px solid #ddd;
+    background-color: #efefef;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+    min-height: 100px;
+    min-width: 475px;
+    max-height: 1000px;
+    max-width: 1000px;
+}
+
+
+input[type=text], input[type=password]{
+    width: 500px;
     background-color: #efefef;
     color: #666666;
     border: 2px solid #ddd;
@@ -12,7 +46,7 @@ input[type=text], input[type=password], select{
     margin-bottom: 5px;
 
 }
-input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, select:focus{
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, select:focus, textarea[placeholder="Opis"]:focus{
     -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);

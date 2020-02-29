@@ -21,7 +21,6 @@
                     <img src="resources/images/google-home-logo.png" class="logoImage"></img>
                     <span style="color: #c34f4f">Oto</span><span style="color: #2ECC40">Nasz</span><span style="color: #0074D9">Dom</span>
                 </div>
-                <h:messages class="messages"  ></h:messages>
 
                 <komponentyZlozone:Logowanie 
                     usernameLabel="#{bundle['logowanie.pseudonim']}"
@@ -31,8 +30,9 @@
 
                     loginButtonLabel="#{bundle['logowanie.zaloguj']}"
                     loginButtonAction="#{loginController.validateUsernamePassword()}" 
-
+                    
                     />
+                <h:messages class="messages"  ></h:messages>
 
                 <br/><br/>
                 <h:button value="Rejestracja" outcome="userRegister" style="font-size: 30px; box-shadow: gray; padding: 5px;">

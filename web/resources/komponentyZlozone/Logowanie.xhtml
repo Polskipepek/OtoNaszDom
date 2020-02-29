@@ -9,7 +9,7 @@
       xmlns:composite = "http://java.sun.com/jsf/composite">
 
     <link target="resources/css/style.css" type="text/css" rel="stylesheet"/>
-    
+
     <composite:interface>
         <composite:attribute name = "usernameLabel" />
         <composite:attribute name = "usernameValue" />
@@ -23,13 +23,11 @@
 
     <composite:implementation>
         <h:form>
-            <!--
-            <h:message id="messages" for = "loginPanel" style = "color:red;" />
-            -->
-
-            <h:panelGrid columns = "1" id = "loginPanel">
+            <h:panelGrid columns = "2" id = "loginPanel">
                 <h:inputText id = "username" value = "#{cc.attrs.usernameValue}" title="#{cc.attrs.usernameLabel}"  required="true" pt:placeholder="#{cc.attrs.usernameLabel}" /> 
+                <h:message for="username" showDetail="false"/>
                 <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}" title="#{cc.attrs.passwordLabel}"  required="true" pt:placeholder="#{cc.attrs.passwordLabel}" />
+                <h:message for="password" showDetail="false"/>
             </h:panelGrid>
 
             <h:commandButton 

@@ -8,7 +8,8 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:composite = "http://java.sun.com/jsf/composite"
       >
-    <link target="resources/css/style.css" type="text/css" rel="stylesheet"/>
+
+
     <composite:interface>
         <composite:attribute name = "nameLabel" />
         <composite:attribute name = "nameValue" />
@@ -35,10 +36,10 @@
 
             <h:panelGrid columns="1" id="addFlatPanel">
 
-                <h:inputText    id = "username" value="#{cc.attrs.nameValue}"           required="true" label="#{cc.attrs.nameLabel}"           pt:placeholder="#{cc.attrs.nameLabel}" />
-                <h:inputText    id = "password" value="#{cc.attrs.descriptionValue}"    required="true" label="#{cc.attrs.descriptionLabel}"    pt:placeholder="#{cc.attrs.descriptionLabel}"/>
-                <h:inputText    id="email"      value="#{cc.attrs.priceValue}"          required="true" label="#{cc.attrs.priceLabel}"          pt:placeholder="#{cc.attrs.priceLabel}"/>
-                <h:inputFile    id="avatar"     value="#{cc.attrs.imagesValue}"   label="#{cc.attrs.imagesLabel}"   pt:multiple="true" />
+                <h:inputText    id = "flatName" value="#{cc.attrs.nameValue}"           required="true" label="#{cc.attrs.nameLabel}"           pt:placeholder="#{cc.attrs.nameLabel}" />
+                <h:inputTextarea    id = "flatDesc" value="#{cc.attrs.descriptionValue}"    required="true" label="#{cc.attrs.descriptionLabel}"    pt:placeholder="#{cc.attrs.descriptionLabel}"/>
+                <h:inputText    id="flatPrice"      value="#{cc.attrs.priceValue}"          required="true" label="#{cc.attrs.priceLabel}"          />
+                <h:inputFile    id="flatimages"  pt:placeholder="#{cc.attrs.imagesLabel}"   value="#{cc.attrs.imagesValue}"   label="#{cc.attrs.imagesLabel}"   pt:multiple="true" styleClass="file"/>
 
                 <h:commandButton 
                     action = "#{cc.attrs.addFlatButtonAction}" 
