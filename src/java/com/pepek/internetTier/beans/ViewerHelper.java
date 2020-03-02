@@ -5,21 +5,25 @@
  */
 package com.pepek.internetTier.beans;
 
+import com.pepek.integrationTier.enitities.Users;
 import java.io.Serializable;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Michal
  */
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 public class ViewerHelper implements Serializable {
 
     private String currentForm = "userLogin.xhtml";
     private boolean toggleForm = false;
     private String helper = "";
+
 
     public boolean isToggleForm() {
         return toggleForm;
@@ -39,5 +43,7 @@ public class ViewerHelper implements Serializable {
         helper = temp;
         return temp;
     }
+
+
 
 }

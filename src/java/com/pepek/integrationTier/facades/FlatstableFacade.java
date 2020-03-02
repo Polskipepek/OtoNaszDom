@@ -12,18 +12,12 @@ package com.pepek.integrationTier.facades;
 
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.Part;
 
 /**
  *
@@ -32,6 +26,8 @@ import javax.servlet.http.Part;
 @Stateless
 public class FlatstableFacade extends AbstractFacade<Flatstable> {
 
+    public final String imagesRootpath = "A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\web\\resources\\images\\";
+    
     @PersistenceContext(unitName = "OtoNaszDomPU")
     private EntityManager em;
 
@@ -92,29 +88,29 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
         return findAll();
     }
 
-    public List<String> upload(Part[] files) {
-        List<String> paths = new ArrayList<>();
-        for (Part file : files) {
-            try {
-                InputStream in = file.getInputStream();
-
-                File f = new File("A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\HOST" + file.getSubmittedFileName());
-                f.createNewFile();
-                FileOutputStream out = new FileOutputStream(f);
-                byte[] buffer = new byte[8192];
-                int length;
-                while ((length = in.read(buffer)) > 0) {
-                    out.write(buffer, 0, length);
-                }
-                paths.add(f.getAbsolutePath());
-                out.close();
-                in.close();
-
-            } catch (Exception e) {
-                e.printStackTrace(System.out);
-            }
-
-        }
-        return paths;
-    }
+//    public List<String> upload(Part[] files) {
+//        List<String> paths = new ArrayList<>();
+//        for (Part file : files) {
+//            try {
+//                InputStream in = file.getInputStream();
+//
+//                File f = new File("A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\HOST" + file.getSubmittedFileName());
+//                f.createNewFile();
+//                FileOutputStream out = new FileOutputStream(f);
+//                byte[] buffer = new byte[1024];
+//                int length;
+//                while ((length = in.read(buffer)) > 0) {
+//                    out.write(buffer, 0, length);
+//                }
+//                paths.add(f.getAbsolutePath());
+//                out.close();
+//                in.close();
+//
+//            } catch (Exception e) {
+//                e.printStackTrace(System.out);
+//            }
+//
+//        }
+//        return paths;
+//    }
 }

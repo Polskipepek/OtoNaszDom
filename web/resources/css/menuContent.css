@@ -4,8 +4,7 @@ body {
     overflow: hidden;
     font-family: 'Lato';
     font-size: 20px;
-    background: url(http://localhost:8080/resources/images/white_wall.png);
-    /* This pattern is downloaded from www.subtlepatterns.com */
+    background-color: rgb(236,239,241);
     overflow:auto;
 
 }
@@ -17,16 +16,15 @@ body {
 
 .header{
     width: 100%;
-    padding: 20px 0; 
+    padding-top: 20px 0; 
+    background-color: white;
 
 }
 .nav{
     width: 100%;
     padding: 10px 0;
-    background-color: #EEEEEE;
-    /* This pattern is downloaded from www.subtlepatterns.com  */
+    background-color: white;
     text-align: center;
-    border-top: 1px solid #999999;
     border-bottom: 1px solid #999999;
     z-index: 101;
 }

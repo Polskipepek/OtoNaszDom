@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="resources/css/fieldsStyleHome.css" type="text/css"/>
 
         <link href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap" rel="stylesheet"/>
-
     </h:head>
     <h:body>
 
@@ -29,8 +28,10 @@
                 </div>
             </div>
         </div>
+        
+        <h:link value="login" outcome="userLogin" rendered="#{loginController.user == null}"/>
 
-        <script src="jquery-3.4.1.min.js"/>
+        <script src="resources/jquery-3.4.1.min.js"/>
         <script>
             $(document).ready(function () {
                 var NavY = $('.nav').offset().top;

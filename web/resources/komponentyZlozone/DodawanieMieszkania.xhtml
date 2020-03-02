@@ -5,7 +5,7 @@
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
       xmlns:f = "http://java.sun.com/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:composite = "http://java.sun.com/jsf/composite"
       >
 
@@ -20,14 +20,14 @@
         <composite:attribute name = "priceValue"    />
         <composite:attribute name = "priceLabel"    />
 
-        <composite:attribute name = "dateValue"   />
-        <composite:attribute name = "dateLabel"   />
+        <composite:attribute name = "sizeValue"   />
+        <composite:attribute name = "sizeLabel"   />
 
         <composite:attribute name = "imagesValue"   />
         <composite:attribute name = "imagesLabel"   />
 
         <composite:attribute name = "addFlatButtonLabel" />
-        <composite:attribute name = "addFlatButtonAction" method-signature="java.lang.String AddFlat()" />
+        <composite:attribute name = "addFlatButtonAction" method-signature="java.lang.String addFlat()" />
 
     </composite:interface>
 
@@ -36,10 +36,14 @@
 
             <h:panelGrid columns="1" id="addFlatPanel">
 
-                <h:inputText    id = "flatName" value="#{cc.attrs.nameValue}"           required="true" label="#{cc.attrs.nameLabel}"           pt:placeholder="#{cc.attrs.nameLabel}" />
-                <h:inputTextarea    id = "flatDesc" value="#{cc.attrs.descriptionValue}"    required="true" label="#{cc.attrs.descriptionLabel}"    pt:placeholder="#{cc.attrs.descriptionLabel}"/>
-                <h:inputText    id="flatPrice"      value="#{cc.attrs.priceValue}"          required="true" label="#{cc.attrs.priceLabel}"          />
-                <h:inputFile    id="flatimages"  pt:placeholder="#{cc.attrs.imagesLabel}"   value="#{cc.attrs.imagesValue}"   label="#{cc.attrs.imagesLabel}"   pt:multiple="true" styleClass="file"/>
+                <h:inputText    id = "flatName" value="#{cc.attrs.nameValue}"            label="#{cc.attrs.nameLabel}"           a:placeholder="#{cc.attrs.nameLabel}" maxlength="50" />
+                <h:inputTextarea    id = "flatDesc" value="#{cc.attrs.descriptionValue}"     label="#{cc.attrs.descriptionLabel}"    a:placeholder="#{cc.attrs.descriptionLabel}"  >
+                    <f:validateLength maximum="500"/>
+                </h:inputTextarea>
+                <h:inputText    id="flatPrice"      value="#{cc.attrs.priceValue}"           label="#{cc.attrs.priceLabel}"     a:placeholder="#{cc.attrs.priceLabel}"  maxlength="500"   />
+                <h:inputText    id="flatSize"      value="#{cc.attrs.sizeValue}"           label="#{cc.attrs.sizeLabel}"   a:placeholder="#{cc.attrs.sizeLabel}"   maxlength="10"    />
+
+                <h:inputFile    id="flatimages"  a:placeholder="#{cc.attrs.imagesLabel}" a:multiple="true"   value="#{cc.attrs.imagesValue}"    label="#{cc.attrs.imagesLabel}"   styleClass="files"/>
 
                 <h:commandButton 
                     action = "#{cc.attrs.addFlatButtonAction}" 

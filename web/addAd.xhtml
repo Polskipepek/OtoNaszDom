@@ -12,6 +12,7 @@
 
     </h:head>
     <h:body>
+
         <h:form enctype="multipart/form-data">
             <ui:include src="menuContent.xhtml"/>
             <div id="centeredForm" >
@@ -21,15 +22,16 @@
                     descriptionLabel="#{bundle['browser.opis']}"
                     descriptionValue="#{browserController.desc}"
                     imagesLabel="#{bundle['browser.obrazy']}"
-                    imagesValue="#{browserController.files}"
+                    imagesValue="#{browserController.images}"
                     priceLabel="#{bundle['browser.cena']}"
+                    sizeLabel="#{bundle['browser.powierzchnia']}"
+                    sizeValue="#{browserController.size}"
                     priceValue="#{browserController.price}"
                     addFlatButtonLabel="#{bundle['browser.dodaj']}"
-                    addFlatButtonAction="#{browserController.addFlat}"
-
+                    addFlatButtonAction="#{browserController.addFlatString()}"
 
                     />
-                
+
             </div>
         </h:form>
 

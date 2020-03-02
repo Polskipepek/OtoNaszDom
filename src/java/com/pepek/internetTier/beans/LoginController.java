@@ -53,7 +53,7 @@ public class LoginController implements Serializable {
             session.setAttribute("username", user);
 
             return "/home";
-            
+
         } else if (valid.contains("notExist")) {
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -67,7 +67,7 @@ public class LoginController implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Nieprawidłowe dane logowania",
                             "proszę wpisać poprawne dane logowania"));
-            
+
         }
         return "";
     }

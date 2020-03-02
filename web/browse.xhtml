@@ -42,9 +42,6 @@
                                 priceLabel="#{bundle['mieszkanie.cena']}"
                                 priceValue="#{browserController.price}"
 
-                                dateLabel="#{bundle['mieszkanie.data']}"
-                                dateValue="#{browserController.data}"
-
                                 imagesLabel="#{bundle['mieszkanie.obraz']}"
                                 imagesValue="#{browserController.files}"
 
@@ -55,8 +52,10 @@
                         </center>
 
                     </h:form>
-
-
+                    <br/><br/>
+                    <ui:include src="showAll.xhtml"/>
+                    
+                    
                 </center>
             </h:form>
 

@@ -43,12 +43,12 @@ public class Flatstable implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 25)
+    @Size(min = 5, max = 50)
     @Column(name = "NAME")
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 10, max = 500)
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "SIZE")

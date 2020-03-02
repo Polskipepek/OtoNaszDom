@@ -11,7 +11,9 @@ body {
     overflow:auto;
 
 }
-
+h3{
+    margin-block-end: 5px;
+}
 .centeredForm{
     background-color: white; 
     margin-top: 10vh !important;

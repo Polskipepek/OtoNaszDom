@@ -4,16 +4,35 @@ import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
 import com.pepek.integrationTier.facades.FlatstableFacade;
 import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.misc.SessionUtils;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -21,12 +40,12 @@ import javax.servlet.http.Part;
  */
 @ManagedBean
 @SessionScoped
-public class BrowserController {
+public class BrowserController implements Serializable {
 
     private String name;
     private String desc;
     private float price;
-    private Part[] files;
+    private Part images;
     private Date data;
     private String searchString;
     private boolean showPopup;
@@ -40,10 +59,60 @@ public class BrowserController {
     private UsersFacade usersFacade;
     private List<Flatstable> FlatsByString;
 
+    public static Collection<Part> getAllParts(Part part) throws ServletException, IOException {
+
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Collection<Part> parts = new ArrayList<>();
+        Collection<Part> col = request.getParts();
+
+        for (Part p : col) {
+            if (p.getName().equals(part.getName())) {
+                parts.add(p);
+            }
+        }
+        return parts;
+    }
+
+    public String addFlatString() {
+        addFlat();
+        try {
+            FacesContext.getCurrentInstance().
+                    getExternalContext().redirect("http://localhost:8080/faces/home.xhtml");
+
+        } catch (IOException asd) {
+            System.err.println(asd.getMessage());
+        }
+        return "userLogin";
+    }
+
     public Flatstable addFlat() {
+
+        List<String> imagesNames = new ArrayList<>();
+        Path rootFolder = Paths.get(flatstableFacade.imagesRootpath);
+
+        try {
+            for (Part part : getAllParts(images)) {
+
+                String fileName = FilenameUtils.getBaseName(part.getSubmittedFileName());
+                String extension = FilenameUtils.getExtension(part.getSubmittedFileName());
+
+                InputStream fileContent = part.getInputStream();
+                File file = new File("A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\web\\resources\\images\\" + fileName + "." + extension);
+                FileUtils.copyInputStreamToFile(fileContent, file);
+
+                System.out.println("Uploaded file successfully saved in " + file.getAbsolutePath());
+                imagesNames.add(fileName + "." + extension);
+
+            }
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(BrowserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         //List<String> imagesPath = flatstableFacade.upload(files);
         getOwner();
-        return flatstableFacade.AddNewFlatToDB(owner, name, desc, price, null, size);
+        Flatstable ret = flatstableFacade.AddNewFlatToDB(owner, name, desc, price, imagesNames, size);
+
+        return ret;
 
     }
 
@@ -58,7 +127,6 @@ public class BrowserController {
         name = "";
         desc = "";
         price = -1;
-        files = null;
         data = null;
 
         showPopup = false;
@@ -114,7 +182,7 @@ public class BrowserController {
 
     public Users getOwner() {
         String s = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        
+
         return owner;
     }
 
@@ -130,14 +198,6 @@ public class BrowserController {
         this.flatstableFacade = flatstableFacade;
     }
 
-    public Part[] getFiles() {
-        return files;
-    }
-
-    public void setFiles(Part[] files) {
-        this.files = files;
-    }
-
     public float getSize() {
         return size;
     }
@@ -149,6 +209,10 @@ public class BrowserController {
     public List<String> getL_imagesPaths(Flatstable flat) {
         List<String> temp = new ArrayList<>();
         String[] sTemp = flat.getS_imagesPaths().split("\n");
+
+//        for (int i = 0; i < sTemp.length; i++) {
+//            sTemp[i] = flatstableFacade.imagesRootpath + sTemp[i];
+//        }
         temp.addAll(Arrays.asList(sTemp));
 
         l_imagesPaths = temp;
@@ -168,6 +232,7 @@ public class BrowserController {
     }
 
     public List<Flatstable> getFlatsByString() {
+
         return flatstableFacade.GetFlats(getSearchString(), getOwner());
     }
 
@@ -182,4 +247,13 @@ public class BrowserController {
     public void setUsersFacade(UsersFacade usersFacade) {
         this.usersFacade = usersFacade;
     }
+
+    public Part getImages() {
+        return images;
+    }
+
+    public void setImages(Part images) {
+        this.images = images;
+    }
+
 }
