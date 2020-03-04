@@ -24,7 +24,6 @@
                     </h:commandButton>
                     <br/>
 
-
                     <h:commandButton class="openPopupButton" value="#{bundle['browser.otworzPopupDodaj']}">
                         <f:ajax render="@form" listener="#{browserController.showPopupAddFlat()}" />
                     </h:commandButton>
@@ -43,20 +42,20 @@
                                 priceValue="#{browserController.price}"
 
                                 imagesLabel="#{bundle['mieszkanie.obraz']}"
-                                imagesValue="#{browserController.files}"
+                                imagesValue="#{browserController.images}"
 
                                 addFlatButtonLabel="#{bundle['mieszkanie.dodajMieszkanie']}"
                                 addFlatButtonAction="#{browserController.AddFlat()}"
 
                                 /><br/>
                         </center>
-
                     </h:form>
                     <br/><br/>
-                    <ui:include src="showAll.xhtml"/>
-                    
-                    
                 </center>
+            </h:form>
+            <h:form>
+                <ui:include src="showAds.xhtml"/>
+
             </h:form>
 
         </div>

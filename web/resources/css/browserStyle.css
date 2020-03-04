@@ -23,7 +23,6 @@ a[href="/faces/userLogin.xhtml"]{
 
 .flatBox{
     background-color: white;
-    border: 1px dashed black;
     max-height: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -31,17 +30,20 @@ a[href="/faces/userLogin.xhtml"]{
     cursor: pointer;
     margin-bottom: 10px;
     display: flex;
-    
+
 }
+
 .flatBox > img{
     height: auto;
     width: 35%;
     margin-right: 5px;
     object-fit: cover;
 }
-.flatBox > span{
+div[id="outputTexts"] > span {
     display:block;
     margin-bottom: 5px;
+    padding: 5px;
+    text-align: justify;
 }
 
 span[id="name"]{
@@ -50,9 +52,12 @@ span[id="name"]{
 
 span[id="desc"]{
     color: #0074D9;
+    font-size: 18px;
 }
 
-span[id="size"], span[id="price"]{
+span[id="price"]{
+    color: #c34f4f;
+    font-size: 22px;
 
 }
 

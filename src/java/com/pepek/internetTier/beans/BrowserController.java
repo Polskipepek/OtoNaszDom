@@ -4,17 +4,12 @@ import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
 import com.pepek.integrationTier.facades.FlatstableFacade;
 import com.pepek.integrationTier.facades.UsersFacade;
-import com.pepek.misc.SessionUtils;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +25,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -94,7 +88,7 @@ public class BrowserController implements Serializable {
     public Flatstable addFlat() {
 
         List<String> imagesNames = new ArrayList<>();
-        Path rootFolder = Paths.get(flatstableFacade.imagesRootpath);
+        //Path rootFolder = Paths.get(flatstableFacade.imagesRootpath);
         Random random = new Random();
         try {
             for (Part part : getAllParts(images)) {

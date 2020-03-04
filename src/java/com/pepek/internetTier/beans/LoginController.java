@@ -5,8 +5,8 @@ import com.pepek.misc.SessionUtils;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  *@author Michal
  */
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class LoginController implements Serializable {
 
     @EJB

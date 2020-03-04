@@ -41,15 +41,15 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
     }
 
     public Flatstable AddNewFlatToDB(Users owner, String name, String description, float price, List<String> imagesPath, float size) {
-        String temp = "";
+        String imagesNamesInString = "";
 
         if (imagesPath != null && imagesPath.size() > 0) {
             for (String s : imagesPath) {
-                temp += s + "\n";
+                imagesNamesInString += s + "\n";
             }
         }
 
-        Flatstable mieszkanko = new Flatstable(count() + 1, name, description, size, price, temp, owner);
+        Flatstable mieszkanko = new Flatstable(count() + 1, name, description, size, price, imagesNamesInString, owner);
         create(mieszkanko);
 
         return mieszkanko;

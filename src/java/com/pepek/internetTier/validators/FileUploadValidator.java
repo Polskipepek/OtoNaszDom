@@ -1,5 +1,6 @@
 package com.pepek.internetTier.validators;
 
+import java.io.InputStream;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -25,8 +26,8 @@ public class FileUploadValidator implements Validator {
             if (file == null || file.getSize() <= 0 || file.getContentType().isEmpty()) {
                 message = new FacesMessage("Select a valid file");
 
-            } else if (!file.getContentType().endsWith("jpg") || !file.getContentType().endsWith("png")
-                    || !file.getContentType().endsWith("jpeg") || !file.getContentType().endsWith("ico") || !file.getContentType().endsWith("gif")) {
+            } else if (!file.getContentType().endsWith("jpg") && !file.getContentType().endsWith("png")
+                    && !file.getContentType().endsWith("jpeg") && !file.getContentType().endsWith("ico") && !file.getContentType().endsWith("gif")) {
                 message = new FacesMessage("Select an image file");
             } else if (file.getSize() > 10000000) {
                 message = new FacesMessage("File size too big. File size allowed  is less than or equal to 10 MB.");
@@ -36,7 +37,6 @@ public class FileUploadValidator implements Validator {
                 message.setSeverity(FacesMessage.SEVERITY_ERROR);
                 throw new ValidatorException(message);
             }
-
         } catch (Exception ex) {
             throw new ValidatorException(new FacesMessage(ex.getMessage()));
         }

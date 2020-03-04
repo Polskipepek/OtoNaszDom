@@ -88,8 +88,6 @@ ol > li{
 
     transition:1s;
 
-    a:hover { color:red; }
-
 }
 ol > li:not(:hover){
     border-right: 1px dashed #751b1b;
