@@ -8,8 +8,6 @@
 
     <h:head>
         <link rel="stylesheet" href="resources/css/browserStyle.css"/>
-        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-        -->
         <title>#{bundle['browser.szukaj']}</title>
     </h:head>
     <h:body>
@@ -19,7 +17,7 @@
                 <center>
                     <h:inputText class="searchTxt"  value="#{browserController.searchString}"></h:inputText>
 
-                    <h:commandButton class="searchBtn" value="#{bundle['browser.szukaj']}" action="#{browserController.GetFlatsByString()}" >
+                    <h:commandButton class="searchBtn" value="#{bundle['browser.szukaj']}" action="#{browserController.flatsByString}" >
                         <f:ajax execute="search" render="output"></f:ajax>
                     </h:commandButton>
                     <br/>
@@ -31,7 +29,6 @@
                     <h:form class="popup-panel-overlay" enctype="multipart/form-data" rendered="#{browserController.showPopup}">
                         <center class="popup-panel">
                             <komponentyZlozone:DodawanieMieszkania
-
                                 nameLabel="#{bundle['mieszkanie.nazwa']}"
                                 nameValue="#{browserController.name}"
 
@@ -46,7 +43,6 @@
 
                                 addFlatButtonLabel="#{bundle['mieszkanie.dodajMieszkanie']}"
                                 addFlatButtonAction="#{browserController.AddFlat()}"
-
                                 /><br/>
                         </center>
                     </h:form>
