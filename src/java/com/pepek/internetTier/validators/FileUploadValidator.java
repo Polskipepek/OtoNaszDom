@@ -8,7 +8,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 
-@FacesValidator(value = "fileUploadValidator")
+@FacesValidator(value = "com.pepek.internetTier.validators.fileUploadValidator")
 public class FileUploadValidator implements Validator {
 
     @Override
@@ -17,11 +17,16 @@ public class FileUploadValidator implements Validator {
 
         FacesMessage message = null;
 
+        if (!continueValidation()) {
+            return;
+        }
+
         try {
             if (file == null || file.getSize() <= 0 || file.getContentType().isEmpty()) {
                 message = new FacesMessage("Select a valid file");
-            } else if (!file.getContentType().endsWith("jpg") || !file.getContentType().endsWith("png") || 
-                    !file.getContentType().endsWith("jpeg") || !file.getContentType().endsWith("ico") || !file.getContentType().endsWith("gif")) {
+
+            } else if (!file.getContentType().endsWith("jpg") || !file.getContentType().endsWith("png")
+                    || !file.getContentType().endsWith("jpeg") || !file.getContentType().endsWith("ico") || !file.getContentType().endsWith("gif")) {
                 message = new FacesMessage("Select an image file");
             } else if (file.getSize() > 10000000) {
                 message = new FacesMessage("File size too big. File size allowed  is less than or equal to 10 MB.");
@@ -36,6 +41,14 @@ public class FileUploadValidator implements Validator {
             throw new ValidatorException(new FacesMessage(ex.getMessage()));
         }
 
+    }
+
+    protected boolean continueValidation() {
+        String skipValidator = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("skipValidator");
+        if (skipValidator != null && skipValidator.equalsIgnoreCase("true")) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -44,19 +45,22 @@ public class BrowserController implements Serializable {
 
     private String name;
     private String desc;
-    private float price;
+    private Float price;
     private Part images;
     private Date data;
     private String searchString;
     private boolean showPopup;
     private Users owner;
-    private float size;
+    private Float size;
     private List<String> l_imagesPaths;
     private List<Flatstable> allFlats;
+    private int renderedImagesFromFlatstable;
+
     @EJB
     private FlatstableFacade flatstableFacade;
     @EJB
     private UsersFacade usersFacade;
+
     private List<Flatstable> FlatsByString;
 
     public static Collection<Part> getAllParts(Part part) throws ServletException, IOException {
@@ -85,15 +89,16 @@ public class BrowserController implements Serializable {
         return "userLogin";
     }
 
+
+
     public Flatstable addFlat() {
 
         List<String> imagesNames = new ArrayList<>();
         Path rootFolder = Paths.get(flatstableFacade.imagesRootpath);
-
+        Random random = new Random();
         try {
             for (Part part : getAllParts(images)) {
-
-                String fileName = FilenameUtils.getBaseName(part.getSubmittedFileName());
+                String fileName = flatstableFacade.count() + 1 + "_" + random.nextInt(1000000000);
                 String extension = FilenameUtils.getExtension(part.getSubmittedFileName());
 
                 InputStream fileContent = part.getInputStream();
@@ -126,7 +131,7 @@ public class BrowserController implements Serializable {
     public void hidePopupAddFlat() {
         name = "";
         desc = "";
-        price = -1;
+        price = null;
         data = null;
 
         showPopup = false;
@@ -164,11 +169,11 @@ public class BrowserController implements Serializable {
         this.desc = desc;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -198,11 +203,11 @@ public class BrowserController implements Serializable {
         this.flatstableFacade = flatstableFacade;
     }
 
-    public float getSize() {
+    public Float getSize() {
         return size;
     }
 
-    public void setSize(float size) {
+    public void setSize(Float size) {
         this.size = size;
     }
 
@@ -254,6 +259,15 @@ public class BrowserController implements Serializable {
 
     public void setImages(Part images) {
         this.images = images;
+    }
+
+    public int getRenderedImagesFromFlatstable() {
+
+        return (renderedImagesFromFlatstable <= 0) ? 0 : renderedImagesFromFlatstable;
+    }
+
+    public void setRenderedImagesFromFlatstable(int renderedImagesFromFlatstable) {
+        this.renderedImagesFromFlatstable = renderedImagesFromFlatstable;
     }
 
 }

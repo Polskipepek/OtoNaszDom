@@ -32,7 +32,7 @@ public class RegisterController implements Serializable {
     private String haslo;
     private String email;
     private String adres;
-    private int telefon;
+    private Integer telefon;
     private Sex plec;
     private File awatar;
     private Date data;
@@ -86,11 +86,11 @@ public class RegisterController implements Serializable {
         this.adres = adres;
     }
 
-    public int getTelefon() {
+    public Integer getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(int telefon) {
+    public void setTelefon(Integer telefon) {
         this.telefon = telefon;
     }
 

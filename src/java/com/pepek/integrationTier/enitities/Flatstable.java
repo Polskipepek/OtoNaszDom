@@ -6,12 +6,12 @@
 package com.pepek.integrationTier.enitities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Flatstable.findById", query = "SELECT f FROM Flatstable f WHERE f.id = :id")
     , @NamedQuery(name = "Flatstable.findByName", query = "SELECT f FROM Flatstable f WHERE f.name = :name")
     , @NamedQuery(name = "Flatstable.findByDescription", query = "SELECT f FROM Flatstable f WHERE f.description = :description")
-    , @NamedQuery(name = "Flatstable.findByPrice", query = "SELECT f FROM Flatstable f WHERE f.price = :price")})
+    , @NamedQuery(name = "Flatstable.findByPrice", query = "SELECT f FROM Flatstable f WHERE f.price = :price")
+    , @NamedQuery(name = "Flatstable.findByDate", query = "SELECT f FROM Flatstable f WHERE f.date = :date")
+})
 public class Flatstable implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,20 +45,23 @@ public class Flatstable implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 5, max = 50)
+    @Size(max = 50)
     @Column(name = "NAME")
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 10, max = 500)
-    @Column(name = "DESCRIPTION")
+    @Size(max = 1000)
+    @Column(columnDefinition="VARCHAR(5000)", name = "DESCRIPTION")
+
     private String description;
     @Column(name = "SIZE")
     private Float size;
     @Column(name = "PRICE")
     private Float price;
-    @Column(name = "IMAGE")
+    @Column(columnDefinition="VARCHAR(1000)", name = "IMAGE")
     private String s_imagesPaths;
+    @Column(name = "CREATIONDATE")
+    private Date date;
 
     @ManyToOne
     private Users user;
@@ -76,9 +81,8 @@ public class Flatstable implements Serializable {
         this.price = price;
         this.s_imagesPaths = imagesPaths;
         this.user = user;
+        setDate(new Date(new java.util.Date().getTime()));
     }
-
-
 
     public Integer getId() {
         return id;
@@ -103,8 +107,6 @@ public class Flatstable implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     public Float getPrice() {
         return price;
@@ -166,5 +168,13 @@ public class Flatstable implements Serializable {
 
     public void setS_imagesPaths(String s_imagesPaths) {
         this.s_imagesPaths = s_imagesPaths;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    private void setDate(Date date) {
+        this.date = date;
     }
 }

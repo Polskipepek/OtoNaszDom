@@ -44,6 +44,10 @@ body {
     width: 20%;
     height: auto;
 }
+.OtoNaszDomLink{
+    text-decoration: none;
+
+}
 
 .sticky{
     width: 100%;

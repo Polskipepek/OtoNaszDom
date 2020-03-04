@@ -5,7 +5,7 @@
 <html xmlns = "http://www.w3.org/1999/xhtml"   
       xmlns:h = "http://java.sun.com/jsf/html"
       xmlns:f = "http://java.sun.com/jsf/core"
-            xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:composite = "http://java.sun.com/jsf/composite">
     <link target="resources/css/style.css" type="text/css" rel="stylesheet"/>
 
@@ -50,9 +50,9 @@
                 </h:inputText>
 
                 <h:inputText    id="mobile"     value="#{cc.attrs.mobileValue}" required="true" label="#{cc.attrs.mobileLabel}" pt:placeholder="#{cc.attrs.mobileLabel}" 
-                                onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;">
                     <f:validateLength minimum="7" maximum="11"/>
-                    
+
                 </h:inputText>
 
                 <!--
@@ -62,8 +62,9 @@
                 <input type="date" value="#{cc.attrs.dateValue}" />
 
                 <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}" pt:placeholder="#{cc.attrs.sexLabel}">
-                    <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />
                     <f:selectItem itemValue="K" itemLabel="Kobieta"   />
+
+                    <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />
                 </h:selectOneMenu>
 
             </h:panelGrid>
