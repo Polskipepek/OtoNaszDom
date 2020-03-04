@@ -48,5 +48,9 @@ public class FlatController implements Serializable{
     public void setFlatstable(Flatstable flatstable) {
         this.flatstable = flatstable;
     }
-
+    
+    public void Test (){
+        System.err.println("errors");
+    }
+    
 }
