@@ -29,7 +29,7 @@
                     priceValue="#{browserController.price}"
                     ownerValue="#{browserController.owner}"
                     addFlatButtonLabel="#{bundle['browser.dodaj']}"
-                    addFlatButtonAction="#{browserController.addFlatString()}"
+                    addFlatButtonAction="#{browserController.addFlatString(loginController.getUser())}"
 
                     />
 

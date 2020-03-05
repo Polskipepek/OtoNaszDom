@@ -7,36 +7,35 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>#{bundle['mieszkanie.idOgloszenia']} = #{flatController.flatstable.id}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/flat.css"/>
     </h:head>
     <h:body>
         <h:form>
             <ui:include src="menuContent.xhtml"/>
         </h:form>
         <ui:param name="f" value="#{flatController}"/>
-        <h:form class="centeredForm" >
-            <h:panelGrid columns="1" id="addFlatPanel">
-                <h:outputText    id = "flatName"    value="#{f.flatstable.name}"           />
-                <h:outputText    id = "flatDesc"    value="#{f.flatstable.description}"    />
-                <h:outputText    id="flatPrice"     value="#{f.flatstable.price}"          />
-                <h:outputText    id="flatSize"      value="#{f.flatstable.size}"           />
-                <h:outputText    id = "flatDate"    value="#{f.flatstable.date}"       />
-                <h:outputText    id = "flatNumber"  value="#{f.flatstable.user.number}"        />
-                <h:outputText    id="flatUser"      value="#{f.flatstable.user}"           />
+        <center>
+            <div class="ElementsRoot">
+
+                <span id="flatName"  > <h:outputText    value="#{f.flatstable.name}"          /></span>   
+                <span id="flatDesc"  > <h:outputText    value="#{f.flatstable.description}"   /></span>  
+                <span id="flatPrice" >#{bundle["mieszkanie.cena"]}: <h:outputText    value="#{f.flatstable.price}"         /> zł</span>  
+                <span id="flatSize"  >#{bundle["mieszkanie.wielkosc"]}: <h:outputText    value="#{f.flatstable.size}"          /> m<sup>2</sup></span>  
+                <span id="flatDate"  >#{bundle["mieszkanie.data"]}: <h:outputText    value="#{f.flatstable.date}"          /></span> 
+                <span id="flatUser"  >#{bundle["mieszkanie.dodanePrzez"]} <h:outputText    value="#{f.flatstable.user.username}" /></span> 
+
+                <span>+48 <h:outputText    id = "flatNumber"  value="#{f.flatstable.user.number}"     /></span>
 
                 <c:forEach id="flatImages" var="image" items="#{flatController.flatstable.s_imagesPaths.split('\\n')}" varStatus="status">
                     <h:graphicImage value="#{'resources/images/'.concat(image)}"  rendered="#{true}" />
                 </c:forEach>
 
-            </h:panelGrid>
-        </h:form>
-
-
+            </div>
+        </center>
     </h:body>
 </html>

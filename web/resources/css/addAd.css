@@ -128,3 +128,11 @@ input[type=date]{
 input.img{
     display: block;  
 }
+
+
+#SearchContent > table > tbody > tr > td > input[type="submit"]{
+    height: 50px;
+    width: 100px;
+    text-align: center;
+    padding: 0;
+}

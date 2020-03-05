@@ -51,7 +51,7 @@ public class LoginController implements Serializable {
             //w celu uniemożliwienia w przypadku powrotu do poprzedniej strony modyfikacji danych i obsługi zdarzeń
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
-
+            
             return "/home";
 
         } else if (valid.contains("notExist")) {

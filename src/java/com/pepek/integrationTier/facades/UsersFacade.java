@@ -41,7 +41,7 @@ public class UsersFacade extends AbstractFacade<Users> {
         em.close();
     }
 
-    Users GetUser(String username) {
+    public Users GetUser(String username) {
         List<Users> usersList = findAll();
         for (Users user : usersList) {
             if (user.getUsername().equals(username)) {

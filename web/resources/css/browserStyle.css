@@ -61,6 +61,17 @@ span[id="price"]{
 
 }
 
+
+.flatBox > input {
+    position: absolute;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    background: none;
+    border: none;
+}
+
+
 /* Style the search field */
 form.example input[type=text] {
     padding: 10px;
@@ -95,16 +106,3 @@ form.example::after {
     display: table;
 }
 
-.popup-panel-overlay{
-    background-color: rgba(0,0,0,0.5);
-    position: absolute;
-    margin: auto;
-}
-.popup-panel{
-    inline-size: max-content;
-    margin: auto;
-    background-color: grey;
-    padding: 20px;
-    border-radius: 5px;
-    border: 2px solid #DDD;
-}

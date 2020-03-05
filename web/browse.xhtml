@@ -6,48 +6,32 @@
       xmlns:komponentyZlozone="http://xmlns.jcp.org/jsf/composite/komponentyZlozone"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:head>
-        <link rel="stylesheet" href="resources/css/browserStyle.css"/>
+    <h:head>        
         <title>#{bundle['browser.szukaj']}</title>
+
+
+        <link rel="stylesheet" href="resources/css/browserStyle.css" type="text/css"/>
+        <link type="text/css" href="resources/css/addAd.css" rel="stylesheet"/>
+
     </h:head>
     <h:body>
         <div>
             <h:form enctype="multipart/form-data">
                 <ui:include src="menuContent.xhtml"/>
                 <center>
-                    <h:inputText class="searchTxt"  value="#{browserController.searchString}"></h:inputText>
+                    <div id="SearchContent">
+                        <h:panelGrid  columns="2">
+                            <h:inputText class="searchTxt"  value="#{browserController.searchString}"></h:inputText>
 
-                    <h:commandButton class="searchBtn" value="#{bundle['browser.szukaj']}" action="#{browserController.flatsByString}" >
-                        <f:ajax execute="search" render="output"></f:ajax>
-                    </h:commandButton>
-                    <br/>
-
-                    <h:commandButton class="openPopupButton" value="#{bundle['browser.otworzPopupDodaj']}">
-                        <f:ajax render="@form" listener="#{browserController.showPopupAddFlat()}" />
-                    </h:commandButton>
-
-                    <h:form class="popup-panel-overlay" enctype="multipart/form-data" rendered="#{browserController.showPopup}">
-                        <center class="popup-panel">
-                            <komponentyZlozone:DodawanieMieszkania
-                                nameLabel="#{bundle['mieszkanie.nazwa']}"
-                                nameValue="#{browserController.name}"
-
-                                descriptionLabel="#{bundle['mieszkanie.opis']}"
-                                descriptionValue="#{browserController.desc}"
-
-                                priceLabel="#{bundle['mieszkanie.cena']}"
-                                priceValue="#{browserController.price}"
-
-                                imagesLabel="#{bundle['mieszkanie.obraz']}"
-                                imagesValue="#{browserController.images}"
-
-                                addFlatButtonLabel="#{bundle['mieszkanie.dodajMieszkanie']}"
-                                addFlatButtonAction="#{browserController.AddFlat()}"
-                                /><br/>
-                        </center>
-                    </h:form>
-                    <br/><br/>
+                            <h:commandButton class="searchBtn" value="#{bundle['browser.szukaj']}" action="#{browserController.getFlatsByString}" >
+                                <f:ajax execute="search" render="output"></f:ajax>
+                            </h:commandButton>
+                        </h:panelGrid>
+                    </div>
                 </center>
+
+
+                <br/><br/>
             </h:form>
             <h:form>
                 <ui:include src="showAds.xhtml"/>

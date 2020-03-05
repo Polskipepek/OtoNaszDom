@@ -4,12 +4,11 @@ import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
 import com.pepek.integrationTier.facades.FlatstableFacade;
 import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.misc.SessionUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +24,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -43,7 +43,6 @@ public class BrowserController implements Serializable {
     private Part images;
     private Date data;
     private String searchString;
-    private boolean showPopup;
     private Users owner;
     private Float size;
     private List<String> l_imagesPaths;
@@ -71,7 +70,9 @@ public class BrowserController implements Serializable {
         return parts;
     }
 
-    public String addFlatString() {
+    public String addFlatString(String owner) {
+
+        this.owner = usersFacade.GetUser(owner);
         addFlat();
         try {
             FacesContext.getCurrentInstance().
@@ -82,8 +83,6 @@ public class BrowserController implements Serializable {
         }
         return "userLogin";
     }
-
-
 
     public Flatstable addFlat() {
 
@@ -115,36 +114,12 @@ public class BrowserController implements Serializable {
 
     }
 
-    public void showPopupAddFlat() {
-        showPopup = !showPopup;
-        if (showPopup == false) {
-            hidePopupAddFlat();
-        }
-    }
-
-    public void hidePopupAddFlat() {
-        name = "";
-        desc = "";
-        price = null;
-        data = null;
-
-        showPopup = false;
-    }
-
     public String getSearchString() {
         return searchString;
     }
 
     public void setSearchString(String search) {
         searchString = search;
-    }
-
-    public boolean isShowPopup() {
-        return showPopup;
-    }
-
-    public void setShowPopup(boolean showPopup) {
-        this.showPopup = showPopup;
     }
 
     public String getName() {
@@ -180,12 +155,11 @@ public class BrowserController implements Serializable {
     }
 
     public Users getOwner() {
-        String s = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-
         return owner;
     }
 
     public void setOwner(Users owner) {
+        owner = usersFacade.GetUser(SessionUtils.getUserName());
         this.owner = owner;
     }
 
@@ -209,12 +183,9 @@ public class BrowserController implements Serializable {
         List<String> temp = new ArrayList<>();
         String[] sTemp = flat.getS_imagesPaths().split("\n");
 
-//        for (int i = 0; i < sTemp.length; i++) {
-//            sTemp[i] = flatstableFacade.imagesRootpath + sTemp[i];
-//        }
         temp.addAll(Arrays.asList(sTemp));
 
-        l_imagesPaths = temp;
+        setL_imagesPaths(temp);
         return l_imagesPaths;
     }
 
@@ -231,7 +202,7 @@ public class BrowserController implements Serializable {
     }
 
     public List<Flatstable> getFlatsByString() {
-
+//TODO//
         return flatstableFacade.GetFlats(getSearchString(), getOwner());
     }
 
