@@ -24,7 +24,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -47,7 +46,7 @@ public class BrowserController implements Serializable {
     private Float size;
     private List<String> l_imagesPaths;
     private List<Flatstable> allFlats;
-    private int renderedImagesFromFlatstable;
+    private int renderedImagesFromFlatstableCount;
 
     @EJB
     private FlatstableFacade flatstableFacade;
@@ -226,13 +225,12 @@ public class BrowserController implements Serializable {
         this.images = images;
     }
 
-    public int getRenderedImagesFromFlatstable() {
-
-        return (renderedImagesFromFlatstable <= 0) ? 0 : renderedImagesFromFlatstable;
+    public int getRenderedImagesFromFlatstableCount() {
+        return (renderedImagesFromFlatstableCount <= 0) ? 0 : renderedImagesFromFlatstableCount;
     }
 
-    public void setRenderedImagesFromFlatstable(int renderedImagesFromFlatstable) {
-        this.renderedImagesFromFlatstable = renderedImagesFromFlatstable;
+    public void setRenderedImagesFromFlatstableCount(int renderedImagesFromFlatstableCount) {
+        this.renderedImagesFromFlatstableCount = renderedImagesFromFlatstableCount;
     }
 
 }
