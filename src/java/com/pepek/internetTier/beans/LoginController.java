@@ -50,8 +50,13 @@ public class LoginController implements Serializable {
             //Używamy sesji, aby przy wylogoweaniu zakończyć / unieważnić sesje, 
             //w celu uniemożliwienia w przypadku powrotu do poprzedniej strony modyfikacji danych i obsługi zdarzeń
             HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", user);
-            
+            session.setAttribute("username", usersFacade.GetUser(user).getUsername());
+            session.setAttribute("address", usersFacade.GetUser(user).getAddress());
+            session.setAttribute("avatar", usersFacade.GetUser(user).getAvatar());
+            session.setAttribute("email", usersFacade.GetUser(user).getEmail());
+            session.setAttribute("flats", usersFacade.GetUser(user).getUserflats());
+
+
             return "/home";
 
         } else if (valid.contains("notExist")) {

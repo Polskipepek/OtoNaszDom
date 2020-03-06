@@ -12,21 +12,14 @@
             <ui:include src="menuContent.xhtml"/>
 
         </h:form>
-        
-        <h2>#{bundle['profil.nazwa']}: #{loginController.user}</h2>
-        
-        <h:dataTable value="#{profileController.FetchUserInfo(profileController.user)}"
-                     var="p" >
-        
-            <h:column>
-                <f:facet name="header">
-                    
-                </f:facet>
+        <h:form>
+            <ui:param value="#{profileController.FetchUser()}" name="p"/>
+            <h2>#{bundle['profil.nazwa']}: #{p}</h2>
 
-                
-            </h:column>
-        
-        </h:dataTable>
+
+                <h:outputText value="#{p}" ></h:outputText>
+        </h:form>
+
     </h:body>
 </html>
 

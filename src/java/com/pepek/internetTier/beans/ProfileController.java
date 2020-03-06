@@ -11,25 +11,22 @@ import java.io.File;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 /*
  *@author Michal
  */
 @ManagedBean
 @SessionScoped
-public class RegisterController implements Serializable {
+public class ProfileController implements Serializable {
 
     @EJB
     private UsersFacade usersFacade;
 
-    private static final long serialVersionUID = 1094838637898L;
+    private static final long serialVersionUID = 1098637898L;
 
     private String user;
-    private String haslo;
     private String email;
     private String adres;
     private Integer telefon;
@@ -37,22 +34,7 @@ public class RegisterController implements Serializable {
     private File awatar;
     private Date data;
 
-    //validate
-    public String validateRegister() {
-        String valid = usersFacade.AddUserToDB(user, haslo, email, telefon, data, plec);
 
-        if (valid.equals("true")) {
-            return "userLogin";
-
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Nieprawidłowe dane rejestracji. Problem: " + valid + "",
-                            "proszę wpisać poprawne dane logowania "));
-            return "";
-        }
-    }
 
     public String getUser() {
         return user;
@@ -62,13 +44,6 @@ public class RegisterController implements Serializable {
         this.user = user;
     }
 
-    public String getHaslo() {
-        return haslo;
-    }
-
-    public void setHaslo(String haslo) {
-        this.haslo = haslo;
-    }
 
     public String getEmail() {
         return email;
@@ -127,3 +102,4 @@ public class RegisterController implements Serializable {
     }
 
 }
+
