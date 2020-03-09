@@ -35,15 +35,22 @@
     <composite:implementation>
         <h:form class="centeredForm" enctype="multipart/form-data" >
 
-            <h:panelGrid columns="1" id="addFlatPanel">
+            <h:panelGrid columns="2" id="addFlatPanel">
+                <h:outputText value="#{cc.attrs.nameLabel}"/>
+                <h:inputText    id = "flatName" value="#{cc.attrs.nameValue}"            label="#{cc.attrs.nameLabel}"           a:placeholder="#{bundle['browser.nazwaopis']}" maxlength="50" />
 
-                <h:inputText    id = "flatName" value="#{cc.attrs.nameValue}"            label="#{cc.attrs.nameLabel}"           a:placeholder="#{cc.attrs.nameLabel}" maxlength="50" />
-                <h:inputTextarea    id = "flatDesc" value="#{cc.attrs.descriptionValue}"     label="#{cc.attrs.descriptionLabel}"    a:placeholder="#{cc.attrs.descriptionLabel}"  >
+                <h:outputText value="#{cc.attrs.descriptionLabel}"/>
+                <h:inputTextarea    id = "flatDesc" value="#{cc.attrs.descriptionValue}"     label="#{cc.attrs.descriptionLabel}"    a:placeholder="#{bundle['browser.opisopis']}"  >
                     <f:validateLength maximum="5000" />
                 </h:inputTextarea>
-                <h:inputText    id="flatPrice"      value="#{cc.attrs.priceValue}"           label="#{cc.attrs.priceLabel}"     a:placeholder="#{cc.attrs.priceLabel}"  maxlength="500"   />
+                
+                <h:outputText  id="priceLabel" value="#{cc.attrs.priceLabel}"/>
+                <h:inputText       value="#{cc.attrs.priceValue}"           label="#{cc.attrs.priceLabel}"     a:placeholder="#{cc.attrs.priceLabel}"  maxlength="500"   />
+               
+                <h:outputLabel id="sizeText" value="#{cc.attrs.sizeLabel}"  for="flatSize"/>
                 <h:inputText    id="flatSize"      value="#{cc.attrs.sizeValue}"           label="#{cc.attrs.sizeLabel}"   a:placeholder="#{cc.attrs.sizeLabel}"   maxlength="10"    />
-
+               
+                <h:outputText id="imageText" value="#{cc.attrs.imagesLabel}"/>
                 <h:inputFile    id="flatimages"  a:placeholder="#{cc.attrs.imagesLabel}" a:multiple="true"   value="#{cc.attrs.imagesValue}"    label="#{cc.attrs.imagesLabel}"   styleClass="files">
                     <f:validator validatorId="com.pepek.internetTier.validators.fileUploadValidator"  />
                 </h:inputFile>

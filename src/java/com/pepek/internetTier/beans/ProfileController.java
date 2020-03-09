@@ -7,7 +7,6 @@ package com.pepek.internetTier.beans;
 
 import com.pepek.integrationTier.enitities.Users;
 import com.pepek.integrationTier.facades.UsersFacade;
-import com.pepek.misc.SessionUtils;
 import com.pepek.misc.Utilieties.Sex;
 import java.io.File;
 import java.io.Serializable;
@@ -26,7 +25,7 @@ public class ProfileController implements Serializable {
     @EJB
     private UsersFacade usersFacade;
 
-    private static final long serialVersionUID = 1098637898L;
+    private static final long serialVersionUID = 10989637898L;
 
     private String username;
     private String email;
@@ -36,18 +35,11 @@ public class ProfileController implements Serializable {
     private File awatar;
     private Date date;
 
-    public Users Initialize(){
-        Users user = usersFacade.GetUser(SessionUtils.getUserName());
-        setUsername(user.getUsername());
-        setEmail(user.getEmail());
-        setAdres(user.getAddress());
-        setTelefon(user.getNumber());
-        setPlec(Sex.valueOf(user.getSex()));
-        setDate(new Date(user.getDate().getTime()));
-        return user;
+    public Users Initialize() {
+        return usersFacade.InitProfile();
+
     }
-            
-            
+
     public String getUsername() {
         return username;
     }

@@ -56,7 +56,6 @@ public class LoginController implements Serializable {
             session.setAttribute("email", usersFacade.GetUser(user).getEmail());
             session.setAttribute("flats", usersFacade.GetUser(user).getUserflats());
 
-
             return "/home";
 
         } else if (valid.contains("notExist")) {
@@ -91,22 +90,4 @@ public class LoginController implements Serializable {
     public void setUsersFacade(UsersFacade usersFacade) {
         this.usersFacade = usersFacade;
     }
-
 }
-/*
-    public String GoogleLoggedIn(String accessToken) {
-        int a = 5;
-        a++;
-        return null;
-    }
-
-
-    public static HttpResponse executeGet(
-            HttpTransport transport, JsonFactory jsonFactory, String accessToken, GenericUrl url)
-            throws IOException {
-        Credential credential = new Credential(BearerToken.authorizationHeaderAccessMethod()).setAccessToken(accessToken);
-        HttpRequestFactory requestFactory = transport.createRequestFactory(credential);
-        return requestFactory.buildGetRequest(url).execute();
-    }
-
- */

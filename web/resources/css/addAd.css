@@ -136,3 +136,6 @@ input.img{
     text-align: center;
     padding: 0;
 }
+tbody > tr > td {
+    color: black;
+}

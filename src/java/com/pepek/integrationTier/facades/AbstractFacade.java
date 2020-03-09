@@ -5,6 +5,7 @@
  */
 package com.pepek.integrationTier.facades;
 
+import com.pepek.misc.SessionUtils;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,7 @@ public abstract class AbstractFacade<T> {
             while (iterator.hasNext()) {
                 ConstraintViolation<T> cv = iterator.next();
                 System.err.println(cv.getRootBeanClass().getName() + "." + cv.getPropertyPath() + " " + cv.getMessage());
-
+                SessionUtils.GetErrorFromCreate(cv.getRootBeanClass().getName() + "." + cv.getPropertyPath() + " " + cv.getMessage());
                 //JsfUtil.addErrorMessage(cv.getRootBeanClass().getSimpleName() + "." + cv.getPropertyPath() + " " + cv.getMessage());
             }
         } else {

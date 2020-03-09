@@ -6,6 +6,7 @@
 package com.pepek.integrationTier.facades;
 
 import com.pepek.integrationTier.enitities.Users;
+import com.pepek.misc.SessionUtils;
 import com.pepek.misc.Utilieties;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -76,6 +77,9 @@ public class UsersFacade extends AbstractFacade<Users> {
             if (user.getNumber().equals(telefon)) {
                 return "NumberExist";
             }
+            if (user.getEmail().equals(email)) {
+                return "emailExist";
+            }
         }
 
         if (!email.contains("@")) {
@@ -88,7 +92,11 @@ public class UsersFacade extends AbstractFacade<Users> {
 
         Users user = new Users(count() + 1, username, s_encryptedPassword, email, telefon, plec.name(), date, salt);
         create(user);
-        return "true";
+        if (SessionUtils.Errors.isEmpty()) {
+            return "true";
+        } else {
+            return SessionUtils.Errors.get(0);
+        }
     }
 
     protected byte[] HashSha256(String string) {
@@ -120,4 +128,15 @@ public class UsersFacade extends AbstractFacade<Users> {
         super(Users.class);
     }
 
+    public Users InitProfile() {
+        Users user = GetUser(SessionUtils.getUserName());
+        user.setUsername(user.getUsername());
+        user.setUsername(user.getUsername());
+        user.setEmail(user.getEmail());
+        user.setAddress(user.getAddress());
+        user.setNumber(user.getNumber());
+        user.setSex(Utilieties.Sex.valueOf(user.getSex()).toString());
+        user.setDate(new Date(user.getDate().getTime()));
+        return user;
+    }
 }

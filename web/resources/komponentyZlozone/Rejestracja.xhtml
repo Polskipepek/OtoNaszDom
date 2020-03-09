@@ -8,13 +8,12 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:composite = "http://java.sun.com/jsf/composite">
     <link target="resources/css/style.css" type="text/css" rel="stylesheet"/>
-
+    
     <composite:interface>
         <composite:attribute name = "usernameLabel" />
         <composite:attribute name = "usernameValue" />
         <composite:attribute name = "passwordLabel" />
         <composite:attribute name = "passwordValue" />
-
         <composite:attribute name = "emailValue"    />
         <composite:attribute name = "emailLabel"    />
         <composite:attribute name = "mobileValue"   />
@@ -23,9 +22,7 @@
         <composite:attribute name = "dateLabel" />
         <composite:attribute name = "sexValue"  />
         <composite:attribute name = "sexLabel"  />
-
-
-
+        
         <composite:attribute name = "registerButtonLabel" />
         <composite:attribute name = "registerButtonAction" method-signature="java.lang.String validateRegister()"
                              />
@@ -39,7 +36,6 @@
                 <h:inputText id = "username" value = "#{cc.attrs.usernameValue}"    required="true" label="#{cc.attrs.usernameLabel}" pt:placeholder="#{cc.attrs.usernameLabel}" >
                     <f:validateLength minimum="5" maximum="25" />
                 </h:inputText>
-
 
                 <h:inputSecret id = "password" value = "#{cc.attrs.passwordValue}"  required="true" label="#{cc.attrs.passwordLabel}" pt:placeholder="#{cc.attrs.passwordLabel}" >
                     <f:validateLength minimum="5" maximum="25"/>
@@ -55,13 +51,10 @@
 
                 </h:inputText>
 
-                <!--
-                <h:inputText    id="date"       value="#{cc.attrs.dateValue}" required="true" label="RRRR-MM-DD"><f:convertDateTime pattern="yyyy-MM-dd"/> </h:inputText>
-                -->
+                    <h:inputText value="#{cc.attrs.dateValue}" styleClass="form-control datepicker" pt:placeholder="RRRR-MM-DD"  
+                                 onkeypress="if (event.which &lt; 44 || event.which &gt; 57) return false;" />
 
-                <input type="date" value="#{cc.attrs.dateValue}" />
-
-                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}" pt:placeholder="#{cc.attrs.sexLabel}">
+                <h:selectOneMenu    id="sex"    value="#{cc.attrs.sexValue}" required="true"  label="#{cc.attrs.sexLabel}" pt:placeholder="#{cc.attrs.sexLabel}" > 
                     <f:selectItem itemValue="K" itemLabel="Kobieta"   />
 
                     <f:selectItem itemValue="M" itemLabel="Mężczyzna"   />

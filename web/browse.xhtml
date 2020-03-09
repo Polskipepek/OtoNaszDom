@@ -18,18 +18,7 @@
         <div>
             <h:form enctype="multipart/form-data">
                 <ui:include src="menuContent.xhtml"/>
-                <center>
-                    <div id="SearchContent">
-                        <h:panelGrid  columns="2">
-                            <h:inputText class="searchTxt"  value="#{browserController.searchString}"></h:inputText>
-
-                            <h:commandButton class="searchBtn" value="#{bundle['browser.szukaj']}" action="#{browserController.getFlatsByString}" >
-                                <f:ajax execute="search" render="output"></f:ajax>
-                            </h:commandButton>
-                        </h:panelGrid>
-                    </div>
-                </center>
-
+               
 
                 <br/><br/>
             </h:form>

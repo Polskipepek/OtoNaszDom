@@ -5,6 +5,9 @@
  */
 package com.pepek.misc;
 
+import com.pepek.integrationTier.enitities.Flatstable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,4 +40,22 @@ public class SessionUtils {
             return null;
         }
     }
+    public static List<String> Errors = new ArrayList<>();
+
+    public static String GetErrorFromCreate(String s) {
+        Errors.add(s);
+        return s;
+
+    }
+
+    private static Flatstable currFlat;
+
+    public static Flatstable getCurrFlat() {
+        return currFlat;
+    }
+
+    public static void setCurrFlat(Flatstable currFlat) {
+        SessionUtils.currFlat = currFlat;
+    }
+
 }

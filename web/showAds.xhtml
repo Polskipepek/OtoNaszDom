@@ -16,8 +16,8 @@
             <h:form>
                 <c:forEach var="flat" items="#{browserController.allFlats}">
                     <div>
-                        <div class="flatBox" onclick="location.href = 'flat.xhtml'">
-                            <h:button value="#{flatController.setFlatstable(flat)}">  
+                        <div class="flatRoot" onclick="#{flatController.setFlatstable(flat)}">  
+                            <div class="flatBox" onclick="location.href = 'flat.xhtml'">
 
                                 <c:forEach var="image" items="#{flat.s_imagesPaths.split('\\n')}" varStatus="status">
                                     <h:graphicImage value="#{'resources/images/'.concat(image)}" height="150px" rendered="#{status.first}" />
@@ -33,9 +33,10 @@
 
                                     <span><h:outputText value="#{flat.user.username}"/><br/></span>
                                 </div>
-                            </h:button>
+                            </div>
 
                         </div>
+
                     </div>
                 </c:forEach>
 

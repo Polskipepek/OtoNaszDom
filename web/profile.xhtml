@@ -14,24 +14,25 @@
 
         </h:form>
         <h:form>
-            <ui:param value="#{profileController.Initialize}" name="p"/>
+            <ui:param value="#{profileController.Initialize()}" name="p"/>
 
             <h:panelGrid columns="2">
-                <h:outputText value="#{bundle['user.nazwa']}"/>
-
+                <span>#{bundle["profil.nazwa"]}</span>
                 <h:outputText value="#{p.username}" ></h:outputText>
-                <h:outputText value="#{bundle['user.adres']}"/>
-                <h:outputText value="#{p.adres}" ></h:outputText>
-                <h:outputText value="#{bundle['user.email']}"/>
+
+                <span>#{bundle["profil.adres"]}</span>
+                <h:outputText value="#{p.address}"></h:outputText>
+
+                <span>#{bundle["profil.email"]}</span>
                 <h:outputText value="#{p.email}" ></h:outputText>
-                <h:outputText value="#{bundle['user.telefon']}"/>
-                <h:outputText value="#{p.telefon}" ></h:outputText>
-                <h:outputText value="#{bundle['user.awatar']}"/>
-                <h:graphicImage value="#{p.awatar}"/>
+                
+                <span>#{bundle["profil.telefon"]}</span>
+                <h:outputText value="#{p.number}" ></h:outputText>
+
+
             </h:panelGrid>
-            
-            <c:forEach items="#{p.}"
-            
+
+
         </h:form>
 
     </h:body>

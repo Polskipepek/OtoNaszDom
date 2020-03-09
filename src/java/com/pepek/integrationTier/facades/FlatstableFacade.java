@@ -12,12 +12,28 @@ package com.pepek.integrationTier.facades;
 
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
+import com.pepek.internetTier.beans.BrowserController;
+import com.pepek.misc.SessionUtils;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -26,8 +42,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class FlatstableFacade extends AbstractFacade<Flatstable> {
 
-    public final String imagesRootpath = "A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\web\\resources\\images\\";
-    
+    public final String imagesRootpath = "C:\\Users\\koles\\Documents\\NetBeansProjects\\OtoNaszDom\\web\\resources\\images\\";
+
     @PersistenceContext(unitName = "OtoNaszDomPU")
     private EntityManager em;
 
@@ -35,12 +51,56 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
+    @EJB
+    private UsersFacade usersFacade;
+    
+    
     public FlatstableFacade() {
         super(Flatstable.class);
     }
 
-    public Flatstable AddNewFlatToDB(Users owner, String name, String description, float price, List<String> imagesPath, float size) {
+    public Flatstable AddFlatToDB(Part images, String name, String desc, float price, float size) {
+        List<String> imagesNames = new ArrayList<>();
+        Random random = new Random();
+        try {
+            for (Part part : getAllParts(images)) {
+                String fileName = count() + 1 + "_" + random.nextInt(1000000000);
+                String extension = FilenameUtils.getExtension(part.getSubmittedFileName());
+
+                InputStream fileContent = part.getInputStream();
+                File file = new File("C:\\Users\\koles\\Documents\\NetBeansProjects\\OtoNaszDom\\web\\resources\\images\\" + fileName + "." + extension);
+                FileUtils.copyInputStreamToFile(fileContent, file);
+
+                System.out.println("Uploaded file successfully saved in " + file.getAbsolutePath());
+                imagesNames.add(fileName + "." + extension);
+
+            }
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(BrowserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //List<String> imagesPath = flatstableFacade.upload(files);
+        Users owner =usersFacade.GetUser(SessionUtils.getUserName());
+        return AddNewFlatToDB(owner, name, desc, price, imagesNames, size);
+
+    }
+
+    public static Collection<Part> getAllParts(Part part) throws ServletException, IOException {
+
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Collection<Part> parts = new ArrayList<>();
+        Collection<Part> col = request.getParts();
+
+        for (Part p : col) {
+            if (p.getName().equals(part.getName())) {
+                parts.add(p);
+            }
+        }
+        return parts;
+    }
+
+    Flatstable AddNewFlatToDB(Users owner, String name, String description, float price, List<String> imagesPath, float size) {
         String imagesNamesInString = "";
 
         if (imagesPath != null && imagesPath.size() > 0) {
@@ -88,29 +148,12 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
         return findAll();
     }
 
-//    public List<String> upload(Part[] files) {
-//        List<String> paths = new ArrayList<>();
-//        for (Part file : files) {
-//            try {
-//                InputStream in = file.getInputStream();
-//
-//                File f = new File("A:\\Users\\Michal\\Documents\\NetBeansProjects\\Git\\OtoNaszDom\\HOST" + file.getSubmittedFileName());
-//                f.createNewFile();
-//                FileOutputStream out = new FileOutputStream(f);
-//                byte[] buffer = new byte[1024];
-//                int length;
-//                while ((length = in.read(buffer)) > 0) {
-//                    out.write(buffer, 0, length);
-//                }
-//                paths.add(f.getAbsolutePath());
-//                out.close();
-//                in.close();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace(System.out);
-//            }
-//
-//        }
-//        return paths;
-//    }
+    public UsersFacade getUsersFacade() {
+        return usersFacade;
+    }
+
+    public void setUsersFacade(UsersFacade usersFacade) {
+        this.usersFacade = usersFacade;
+    }
+
 }
