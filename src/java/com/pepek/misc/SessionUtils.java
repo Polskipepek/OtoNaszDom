@@ -5,7 +5,9 @@
  */
 package com.pepek.misc;
 
+import Objects.User;
 import com.pepek.integrationTier.enitities.Flatstable;
+import com.pepek.integrationTier.enitities.Users;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpSession;
  * @author Michal
  */
 public class SessionUtils {
+
+    private User UserObject;
 
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -40,6 +44,7 @@ public class SessionUtils {
             return null;
         }
     }
+    
     public static List<String> Errors = new ArrayList<>();
 
     public static String GetErrorFromCreate(String s) {
@@ -56,6 +61,16 @@ public class SessionUtils {
 
     public static void setCurrFlat(Flatstable currFlat) {
         SessionUtils.currFlat = currFlat;
+    }
+
+    public User getUserObject() {
+        return UserObject;
+    }
+
+    public void setUserObject(Users us) {
+        User user = new User(Integer.parseInt(getUserId()), us.getUsername(), us.getEmail(), us.getNumber(), Utilieties.Sex.M, us.getDate());
+
+        this.UserObject = user;
     }
 
 }

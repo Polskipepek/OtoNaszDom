@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Profil</title>
     </h:head>
     <h:body>
         <h:form>
@@ -18,23 +18,19 @@
 
             <h:panelGrid columns="2">
                 <span>#{bundle["profil.nazwa"]}</span>
-                <h:outputText value="#{p.username}" ></h:outputText>
+                <h:outputText value="#{p.nazwaUzytkownika}" ></h:outputText>
 
-                <span>#{bundle["profil.adres"]}</span>
-                <h:outputText value="#{p.address}"></h:outputText>
+                <span>#{bundle["profil.plec"]}</span>
+                <h:outputText value="#{p.plec}"></h:outputText>
 
                 <span>#{bundle["profil.email"]}</span>
-                <h:outputText value="#{p.email}" ></h:outputText>
+                <h:outputText value="#{p.mail}" ></h:outputText>
                 
                 <span>#{bundle["profil.telefon"]}</span>
-                <h:outputText value="#{p.number}" ></h:outputText>
+                <h:outputText value="#{p.numer}" ></h:outputText>
 
             </h:panelGrid>
-            <h:outputText value="#{bundle['profil.ogloszenia']}"/><br/>
-                <ui:repeat value="#{profileController.Initialize().userflats}" var="flat">
-                    <h:outputText value="#{flat.name}"/><br/>
-                    
-                </ui:repeat>
+
 
 
         </h:form>

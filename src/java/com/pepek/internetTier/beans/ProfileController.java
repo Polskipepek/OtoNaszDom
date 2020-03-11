@@ -1,32 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pepek.internetTier.beans;
-
-import com.pepek.integrationTier.enitities.Users;
-import com.pepek.integrationTier.facades.UsersFacade;
+import Objects.FasadaUser;
+import Objects.User;
 import com.pepek.misc.Utilieties.Sex;
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Date;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 /*
  *@author Michal
  */
 @ManagedBean
 @SessionScoped
 public class ProfileController implements Serializable {
-
-    @EJB
-    private UsersFacade usersFacade;
-
     private static final long serialVersionUID = 10989637898L;
-
+    private FasadaUser fasadaUser;
     private String username;
     private String email;
     private String adres;
@@ -35,9 +23,14 @@ public class ProfileController implements Serializable {
     private File awatar;
     private Date date;
 
-    public Users Initialize() {
-        return usersFacade.InitProfile();
-
+    public User Initialize() {
+        User us = getFasadaUser().Init(username);
+        setDate(new java.sql.Date(us.getData().getTime()));
+        setEmail(us.getMail());
+        setPlec(us.getPlec());
+        setTelefon(us.getNumer());
+        setUsername(us.getNazwaUzytkownika());
+        return us;
     }
 
     public String getUsername() {
@@ -96,12 +89,15 @@ public class ProfileController implements Serializable {
         this.awatar = awatar;
     }
 
-    public UsersFacade getUsersFacade() {
-        return usersFacade;
+    public FasadaUser getFasadaUser() {
+        if (fasadaUser == null) {
+            fasadaUser = new FasadaUser();
+        }
+        return fasadaUser;
     }
 
-    public void setUsersFacade(UsersFacade usersFacade) {
-        this.usersFacade = usersFacade;
+    public void setFasadaUser(FasadaUser fasadaUser) {
+        this.fasadaUser = fasadaUser;
     }
 
 }

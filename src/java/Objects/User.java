@@ -1,26 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Objects;
-
-import com.pepek.misc.Utilieties;
-import java.util.Date;
 
 /**
  *
  * @author Michal
  */
+package Objects;
+import com.pepek.misc.Utilieties;
+import java.util.Date;
+import java.util.List;
+
 public class User {
     private int id;
     private String nazwaUzytkownika;
-    private String adres;
     private String mail;
     private Integer numer;
     private Utilieties.Sex plec;
     private Date data;
+    private List<Flat> userflats;
 
+    public User(int id, String nazwaUzytkownika, String mail, Integer numer, Utilieties.Sex plec, Date data) {
+        this.id = id;
+        this.nazwaUzytkownika = nazwaUzytkownika;
+        this.mail = mail;
+        this.numer = numer;
+        this.plec = plec;
+        this.data = data;
+    }
+   
+    
     public int getId() {
         return id;
     }
@@ -37,13 +43,6 @@ public class User {
         this.nazwaUzytkownika = nazwaUzytkownika;
     }
 
-    public String getAdres() {
-        return adres;
-    }
-
-    public void setAdres(String adres) {
-        this.adres = adres;
-    }
 
     public String getMail() {
         return mail;
@@ -75,6 +74,14 @@ public class User {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public List<Flat> getUserflats() {
+        return userflats;
+    }
+
+    public void setUserflats(List<Flat> userflats) {
+        this.userflats = userflats;
     }
     
 }
