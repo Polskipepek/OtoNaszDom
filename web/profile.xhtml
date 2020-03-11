@@ -29,8 +29,12 @@
                 <span>#{bundle["profil.telefon"]}</span>
                 <h:outputText value="#{p.number}" ></h:outputText>
 
-
             </h:panelGrid>
+            <h:outputText value="#{bundle['profil.ogloszenia']}"/><br/>
+                <ui:repeat value="#{profileController.Initialize().userflats}" var="flat">
+                    <h:outputText value="#{flat.name}"/><br/>
+                    
+                </ui:repeat>
 
 
         </h:form>

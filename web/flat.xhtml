@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{bundle['mieszkanie.idOgloszenia']} = #{flatController.flatstable.id}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,8 +20,10 @@ and open the template in the editor.
             <ui:include src="menuContent.xhtml"/>
         </h:form>
         <ui:param name="f" value="#{flatController}"/>
+
         <center>
-            <h:form>
+            <h:form id="flatForm">
+
                 <div class="ElementsRoot">
 
                     <span id="flatName"  > <h:outputText    value="#{f.flatstable.name}"          /></span>   
@@ -40,5 +43,7 @@ and open the template in the editor.
             </h:form>
 
         </center>
+
+
     </h:body>
 </html>

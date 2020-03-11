@@ -43,7 +43,7 @@ public class BrowserController implements Serializable {
     @EJB
     private UsersFacade usersFacade;
 
-    private List<Flatstable> FlatsByString;
+  //  private List<Flatstable> FlatsByString;
 
     public Flatstable addFlat() {
         return flatstableFacade.AddFlatToDB(images,name,desc,price,size);
@@ -138,9 +138,9 @@ public class BrowserController implements Serializable {
         return flatstableFacade.GetFlats(getSearchString(), getOwner());
     }
 
-    public void setFlatsByString(List<Flatstable> FlatsByString) {
-        this.FlatsByString = FlatsByString;
-    }
+//    public void setFlatsByString(List<Flatstable> FlatsByString) {
+//        this.FlatsByString = FlatsByString;
+//    }
 
     public UsersFacade getUsersFacade() {
         return usersFacade;

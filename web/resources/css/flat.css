@@ -30,3 +30,6 @@ div > span[id="flatPrice"] {
 div > span[id="flatSize"] {
     color: #0074D9
 }
+img{
+    max-width: 80vh;
+}

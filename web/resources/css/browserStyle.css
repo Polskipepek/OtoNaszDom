@@ -39,23 +39,24 @@ a[href="/faces/userLogin.xhtml"]{
     margin-right: 5px;
     object-fit: cover;
 }
-div[id="outputTexts"] > span {
-    display:block;
+div[id="outputTexts"] {
+    display:grid;
+    grid-row-gap:0px;
     margin-bottom: 5px;
     padding: 5px;
     text-align: justify;
 }
 
-span[id="name"]{
+label[class="name"]{
     font-size: 30px;
 }
 
-span[id="desc"]{
+label[class="desc"]{
     color: #0074D9;
     font-size: 18px;
 }
 
-span[id="price"]{
+label[class="price"]{
     color: #c34f4f;
     font-size: 22px;
 

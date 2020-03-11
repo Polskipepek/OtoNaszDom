@@ -147,7 +147,14 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
     public List<Flatstable> GetAllFlats() {
         return findAll();
     }
-
+    public Flatstable getFlat(Integer id) {
+        for (Flatstable f : GetAllFlats()) {
+            if (f.getId().intValue() == id) {
+                return f;
+            }
+        }
+        return null;
+    }
     public UsersFacade getUsersFacade() {
         return usersFacade;
     }

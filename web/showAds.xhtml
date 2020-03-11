@@ -7,42 +7,34 @@
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:c ="http://java.sun.com/jsp/jstl/core"
 
-      >
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <link rel="stylesheet" type="text/css" href="resources/css/browserStyle.css"/>
     </h:head>
     <h:body>
-        <div id="AdsRoot">
-            <h:form>
-                <c:forEach var="flat" items="#{browserController.allFlats}">
-                    <div>
-                        <div class="flatRoot" onclick="#{flatController.setFlatstable(flat)}">  
-                            <div class="flatBox" onclick="location.href = 'flat.xhtml'">
 
-                                <c:forEach var="image" items="#{flat.s_imagesPaths.split('\\n')}" varStatus="status">
-                                    <h:graphicImage value="#{'resources/images/'.concat(image)}" height="150px" rendered="#{status.first}" />
-                                </c:forEach>
-                                <div id="outputTexts">
-                                    <span id="name"><h:outputText  value="#{flat.name}"/><br/></span>
-                                    <span id="desc" ><h:outputText value="#{flat.description}"/><br/></span>
-                                    <span id="size"><h:outputText value="#{flat.size}"/> m<sup>2</sup><br/></span>
-                                    <span id="price"><h:outputText  value="#{flat.price}"/> zł<br/></span>
-                                    <span id="pricePerMeter"><h:outputText  value="#{flat.price / flat.size}">
-                                            <f:convertNumber maxFractionDigits="2"/>
-                                        </h:outputText> zł/m<sup>2</sup> <br/></span>
+        <div class="flatRoot">
+            <h:form id="flatsForm" >
+                <ui:repeat value="#{browserController.allFlats}" var="flat" >
+                    <f:ajax execute="flatsForm" listener="#{flatController.setFlatstable(flat.id)}" event="click">
+                        <div class="flatBox" onclick="location.href = 'flat.xhtml'" >
+                            <h:graphicImage value="#{'resources/images/'.concat(flat.s_imagesPaths.split('\\n').stream().toArray()[0])}" />
+                            <div id="outputTexts">
+                                <h:outputLabel value="#{flat.id}" class="flatID" id="flatID"/> 
+                                <h:outputLabel value="#{flat.name}" id="name" class="name"/>
+                                <h:outputLabel value="#{flat.description}" class="desc" id="desc"/>                              
+                                <h:outputLabel value="#{flat.date}" class="date" id="date"/>
+                                <h:outputLabel value="#{flat.price}" class="price" id="price"/>
+                                <h:outputLabel value="#{flat.size}" class="size" id="size"/>
 
-                                    <span><h:outputText value="#{flat.user.username}"/><br/></span>
-                                </div>
                             </div>
-
                         </div>
-
-                    </div>
-                </c:forEach>
+                    </f:ajax>
+                </ui:repeat>
 
             </h:form>
         </div>
-
     </h:body>
 
 </html>
