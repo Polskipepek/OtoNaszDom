@@ -41,9 +41,9 @@ import org.apache.commons.io.FilenameUtils;
  */
 @Stateless
 public class FlatstableFacade extends AbstractFacade<Flatstable> {
-
-    public final String imagesRootpath = "C:\\Users\\koles\\Documents\\NetBeansProjects\\OtoNaszDom\\web\\resources\\images\\";
-
+    //public final String imagesRootPath= System.getProperty("user.dir");
+    public final String imagesRootPath = "A:\\Users\\Michal\\Programowanie\\NetBeansProjects\\OtoNaszDom" + "\\web\\resources\\images\\";
+    
     @PersistenceContext(unitName = "OtoNaszDomPU")
     private EntityManager em;
 
@@ -69,7 +69,7 @@ public class FlatstableFacade extends AbstractFacade<Flatstable> {
                 String extension = FilenameUtils.getExtension(part.getSubmittedFileName());
 
                 InputStream fileContent = part.getInputStream();
-                File file = new File("C:\\Users\\koles\\Documents\\NetBeansProjects\\OtoNaszDom\\web\\resources\\images\\" + fileName + "." + extension);
+                File file = new File(imagesRootPath + fileName + "." + extension);
                 FileUtils.copyInputStreamToFile(fileContent, file);
 
                 System.out.println("Uploaded file successfully saved in " + file.getAbsolutePath());
