@@ -41,7 +41,7 @@ import org.apache.commons.io.FilenameUtils;
  */
 @Stateless
 public class FlatstableFacade extends AbstractFacade<Flatstable> {
-    //public final String imagesRootPath= System.getProperty("user.dir");
+    //public final String imagesRootpath= System.getProperty("user.dir");
     public final String imagesRootPath = "A:\\Users\\Michal\\Programowanie\\NetBeansProjects\\OtoNaszDom" + "\\web\\resources\\images\\";
     
     @PersistenceContext(unitName = "OtoNaszDomPU")
