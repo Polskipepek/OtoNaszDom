@@ -5,6 +5,12 @@
  */
 package com.pepek.misc;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Michal
@@ -13,5 +19,14 @@ package com.pepek.misc;
 public class Utilieties {
    public enum Sex {M, K}
 
+   public static Date StringToDate(String dob){
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+       try {
+           return formatter.parse(dob);
+       } catch (ParseException ex) {
+           Logger.getLogger(Utilieties.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return null;
+   }
     
 }

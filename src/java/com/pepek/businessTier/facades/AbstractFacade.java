@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.integrationTier.facades;
+package com.pepek.businessTier.facades;
 
 import com.pepek.misc.SessionUtils;
 import java.util.Iterator;

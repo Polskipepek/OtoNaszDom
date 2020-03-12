@@ -5,8 +5,8 @@
  */
 package com.pepek.businessTier.EJBs;
 
-import com.pepek.integrationTier.facades.FlatstableFacade;
-import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.businessTier.facades.FlatstableFacade;
+import com.pepek.businessTier.facades.UsersFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 

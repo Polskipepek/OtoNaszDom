@@ -8,7 +8,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pepek.integrationTier.facades;
+package com.pepek.businessTier.facades;
 
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;

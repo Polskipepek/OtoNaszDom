@@ -2,8 +2,8 @@ package com.pepek.internetTier.beans;
 
 import com.pepek.integrationTier.enitities.Flatstable;
 import com.pepek.integrationTier.enitities.Users;
-import com.pepek.integrationTier.facades.FlatstableFacade;
-import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.businessTier.facades.FlatstableFacade;
+import com.pepek.businessTier.facades.UsersFacade;
 import com.pepek.misc.SessionUtils;
 import java.io.IOException;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.pepek.internetTier.beans;
 
 import com.pepek.integrationTier.enitities.Flatstable;
-import com.pepek.integrationTier.facades.FlatstableFacade;
+import com.pepek.businessTier.facades.FlatstableFacade;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

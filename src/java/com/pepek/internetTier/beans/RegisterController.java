@@ -5,10 +5,12 @@
  */
 package com.pepek.internetTier.beans;
 
-import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.businessTier.facades.UsersFacade;
+import com.pepek.misc.Utilieties;
 import com.pepek.misc.Utilieties.Sex;
 import java.io.File;
 import java.io.Serializable;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -38,10 +40,9 @@ public class RegisterController implements Serializable {
 
     //validate
     public String validateRegister() {
-        String[] date = data.split("-");
 
         String valid = usersFacade.AddUserToDB(user, haslo, email, telefon, 
-                new java.sql.Date(Integer.parseInt(date[0])-1970, Integer.parseInt(date[1])-1, Integer.parseInt(date[2])), plec);
+                new java.sql.Date(Utilieties.StringToDate(data).getTime()), plec);
 
         if (valid.equals("true")) {
             return "userLogin";

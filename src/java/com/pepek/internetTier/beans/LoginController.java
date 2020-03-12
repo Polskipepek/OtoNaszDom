@@ -1,6 +1,6 @@
 package com.pepek.internetTier.beans;
 
-import com.pepek.integrationTier.facades.UsersFacade;
+import com.pepek.businessTier.facades.UsersFacade;
 import com.pepek.misc.SessionUtils;
 import java.io.Serializable;
 import javax.ejb.EJB;
